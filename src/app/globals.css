@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
+/* Paksa tema light untuk semua perangkat */
 :root {
+  color-scheme: light;
+  
   --background: #f5f6fa;
   --foreground: #222f1f;
   --primary: #226d3d;
   --primary-light: #e6f4ea;
   --secondary: #e5e7eb;
   --accent: #b5c9b8;
-}
 
-:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -20,24 +21,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #e5e7eb;
-    --primary: #226d3d;
-    --primary-light: #2e3d34;
-    --secondary: #374151;
-    --accent: #b5c9b8;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Utility untuk tombol dan elemen utama */
+/* Tombol dan elemen utama */
 .btn-primary {
   background: var(--primary);
   color: #fff;
@@ -104,10 +94,10 @@ body {
 .animate-footer-fadein {
   opacity: 1 !important;
   transform: translateY(0) !important;
-  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .animate-footer-fadein-item {
-  animation: fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1);
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
 }
