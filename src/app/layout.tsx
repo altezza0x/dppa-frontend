@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={`${inter.className} font-sans antialiased bg-gray-50 text-gray-900`}>
+      <body className={`${inter.className} font-sans antialiased text-gray-900`}>
         {/* Komponen Navbar responsif */}
         <Navbar />
         
