@@ -163,10 +163,10 @@ export default function Navbar() {
 							style={{ objectFit: 'contain', display: 'block' }}
 						/>
 						<div className="flex flex-col justify-center text-center leading-tight w-36 -ml-3">
-							<span className="text-green-700 text-lg tracking-wide block w-full text-center font-semibold">
+							<span className="text-green-700 text-lg tracking-wide block w-full text-center font-semibold leading-none">
 								DP3AP2KB
 							</span>
-							<span className="text-gray-600 text-xs font-medium block w-full text-center mt-0.5">
+							<span className="text-gray-600 text-xs font-medium block w-full text-center leading-none">
 								Sumatera Barat
 							</span>
 						</div>
