@@ -68,7 +68,7 @@ const navLinks: NavLinkWithDropdown[] = [
 		name: "Layanan Publik",
 		href: "#",
 		dropdown: [
-			{ name: "Download", href: "/download" },
+			{ name: "Download", href: "/download", icon: "download" },
 			{ name: "Lapor", href: "https://www.lapor.go.id/", icon: "external" },
 		],
 	},
@@ -174,7 +174,7 @@ export default function Navbar() {
 					{/* Spacer untuk dorong hamburger ke kanan */}
 					<div className="flex-1" />
 					{/* Menu utama */}
-					<div className="hidden md:flex items-center gap-8 flex-1 relative">
+					<div className="hidden md:flex items-center gap-4 justify-center flex-grow relative">
 						{/* Animated indicator */}
 						{indicatorProps && (
 							<motion.div
@@ -246,7 +246,9 @@ export default function Navbar() {
 															href={item.href}
 															className="flex items-center gap-2 px-5 py-2 text-gray-800 hover:bg-green-50 text-[15px] font-normal transition"
 														>
-															{item.icon && <span>{item.icon}</span>}
+															{item.icon === "download" && (
+																<svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" /></svg>
+															)}
 															{item.name}
 														</Link>
 													)
@@ -271,6 +273,8 @@ export default function Navbar() {
 							)
 						)}
 					</div>
+					{/* Spacer kanan agar menu benar-benar center */}
+					<div className="hidden md:block min-w-[180px] max-w-[260px]" />
 					{/* Hamburger */}
 					<div className="flex items-center md:hidden ml-auto">
 						<button
@@ -389,7 +393,9 @@ export default function Navbar() {
 																	className="flex items-center gap-2 px-6 py-2 text-gray-800 hover:bg-green-100 text-[15px] font-normal rounded transition-colors duration-150"
 																	onClick={() => setOpen(false)}
 																>
-																	{item.icon && <span>{item.icon}</span>}
+																	{item.icon === "download" && (
+																		<svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" /></svg>
+																	)}
 																	{item.name}
 																</Link>
 															)

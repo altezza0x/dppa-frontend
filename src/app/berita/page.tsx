@@ -238,6 +238,19 @@ const beritaList = [
 		views: 98,
 		badge: "Pengumuman",
 	},
+	{
+		id: 7,
+		title: "Pengumuman Seleksi Calon Konselor KB Tingkat Daerah",
+		date: "9 Juli 2025",
+		excerpt:
+			"Pengumuman seleksi untuk calon konselor KB tingkat daerah, silakan mendaftar melalui website resmi.",
+		image: "/images/berita6.jpg",
+		link: "/berita/6",
+		kategori: ["pengumuman"],
+		views: 98,
+		badge: "Pengumuman",
+	},
+	
 ];
 
 export default function Berita() {
