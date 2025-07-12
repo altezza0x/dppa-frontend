@@ -65,10 +65,10 @@ const navLinks: NavLinkWithDropdown[] = [
 		],
 	},
 	{
-		name: "Layanan Publik",
+		name: "Unduh & Lapor",
 		href: "#",
 		dropdown: [
-			{ name: "Download", href: "/download", icon: "download" },
+			{ name: "Unduh", href: "/download", icon: "download" },
 			{ name: "Lapor", href: "https://www.lapor.go.id/", icon: "external" },
 		],
 	},
@@ -178,8 +178,12 @@ export default function Navbar() {
 						{/* Animated indicator */}
 						{indicatorProps && (
 							<motion.div
-								layout
-								transition={{ type: 'spring', stiffness: 500, damping: 36 }}
+								initial={false}
+								animate={{
+									left: indicatorProps.left,
+									width: indicatorProps.width
+								}}
+								transition={{ type: 'tween', duration: 0.25, ease: 'easeInOut' }}
 								className="absolute bottom-0 h-[2.5px] rounded-full bg-green-600/80 shadow-sm z-0"
 								style={{
 									left: indicatorProps.left,
