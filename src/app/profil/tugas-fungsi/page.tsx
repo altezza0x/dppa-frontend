@@ -77,7 +77,7 @@ export default function TugasFungsi() {
             className="flex flex-wrap gap-4 items-center mb-2"
           >
             <div className="flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm font-semibold">
-              <Calendar size={18} /> 13 Juni 2016 11:17:36 WIB
+              <Calendar size={18} /> 10 Juli 2025 11:17:36 WIB
             </div>
             <div className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold">
               <Eye size={18} /> 6,354 Hits
