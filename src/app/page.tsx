@@ -76,41 +76,12 @@ export default function HomePage() {
   const iconMap = { Shield, Users, Scale, FileCheck };
   return (
     <>
-      {/* Hero Section - Creative Split Layout */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Split Background */}
+      {/* Hero Section - Split Layout Tanpa Animasi */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Split Background Dekoratif (tetap, tanpa animasi) */}
         <div className="absolute inset-0 flex">
-          {/* Left Side - Dark Green */}
-          <motion.div 
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="w-1/2 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative"
-          >
-            {/* Animated Particles */}
-            <div className="absolute inset-0">
-              {[...Array(20)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 100, scale: 0 }}
-                  animate={{ opacity: 0.6, y: 0, scale: 1 }}
-                  transition={{ 
-                    duration: 2, 
-                    delay: i * 0.1,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    repeatDelay: i * 0.3
-                  }}
-                  className="absolute w-2 h-2 bg-emerald-400 rounded-full"
-                  style={{
-                    left: `${(i * 7 + 10) % 90}%`,
-                    top: `${(i * 11 + 5) % 85}%`,
-                  }}
-                />
-              ))}
-            </div>
-            
-            {/* Geometric Pattern */}
+          <div className="w-1/2 h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative">
+            {/* Dekorasi dots/hexagon bisa tetap statis di sini jika ingin */}
             <div className="absolute inset-0 opacity-10">
               <svg width="100%" height="100%" className="w-full h-full">
                 <defs>
@@ -121,63 +92,8 @@ export default function HomePage() {
                 <rect width="100%" height="100%" fill="url(#hexPattern)" className="text-emerald-400"/>
               </svg>
             </div>
-          </motion.div>
-          
-          {/* Right Side - Dark with Pattern (matching left side) */}
-          <motion.div 
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="w-1/2 bg-gradient-to-bl from-slate-900 via-slate-800 to-slate-900 relative"
-          >
-            {/* Animated Particles */}
-            <div className="absolute inset-0">
-              {[...Array(15)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: -100, scale: 0 }}
-                  animate={{ opacity: 0.4, y: 0, scale: 1 }}
-                  transition={{ 
-                    duration: 2.5, 
-                    delay: i * 0.15,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    repeatDelay: i * 0.4
-                  }}
-                  className="absolute w-3 h-3 bg-teal-400 rounded-full"
-                  style={{
-                    left: `${(i * 9 + 15) % 85}%`,
-                    top: `${(i * 13 + 10) % 80}%`,
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Floating Icons */}
-            <div className="absolute inset-0">
-              {[Shield, Users, FileCheck, Calendar].map((Icon, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0, rotate: 0 }}
-                  animate={{ opacity: 0.08, scale: 1, rotate: -360 }}
-                  transition={{ 
-                    duration: 12,
-                    delay: i * 0.7,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute text-emerald-400"
-                  style={{
-                    left: `${15 + i * 18}%`,
-                    top: `${20 + i * 12}%`,
-                  }}
-                >
-                  <Icon size={50} />
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Geometric Pattern (same as left side) */}
+          </div>
+          <div className="w-1/2 h-full bg-gradient-to-bl from-slate-900 via-slate-800 to-slate-900 relative">
             <div className="absolute inset-0 opacity-8">
               <svg width="100%" height="100%" className="w-full h-full">
                 <defs>
@@ -188,112 +104,42 @@ export default function HomePage() {
                 <rect width="100%" height="100%" fill="url(#hexPatternRight)" className="text-teal-400"/>
               </svg>
             </div>
-
-            {/* Decorative Circles with matching theme */}
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.06 }}
-              transition={{ duration: 2, delay: 0.5 }}
-              className="absolute top-20 right-20 w-96 h-96 border-6 border-emerald-400/30 rounded-full"
-            />
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.04 }}
-              transition={{ duration: 2, delay: 1 }}
-              className="absolute bottom-20 right-40 w-64 h-64 border-4 border-teal-400/20 rounded-full"
-            />
-            
-            {/* Additional animated elements */}
-            <motion.div
-              initial={{ opacity: 0, rotate: 0 }}
-              animate={{ opacity: 0.05, rotate: 360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 border-emerald-400/20"
-              style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}
-            />
-          </motion.div>
+          </div>
         </div>
-
         {/* Content Container */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-            
             {/* Left Content - Text */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-white space-y-8"
-            >
-              {/* Main Title */}
+            <div className="text-white space-y-8">
               <div className="space-y-4">
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.7 }}
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
-                >
-                  <span className="block text-emerald-300">Selamat Datang</span>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+                  <span className="block text-emerald-400">Selamat Datang</span>
                   <span className="block">di Website</span>
-                  <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-                    Resmi
-                  </span>
-                </motion.h1>
-                
-                <motion.p
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                  className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-lg"
-                >
-                  Dinas Pemberdayaan Perempuan dan Perlindungan Anak, 
-                  Pengendalian Penduduk dan Keluarga Berencana
-                </motion.p>
+                  <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Resmi</span>
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-lg">
+                  Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana
+                </p>
               </div>
-
-              {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.1 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link 
-                    href="/layanan"
-                    className="group bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  >
-                    <span>Layanan Publik</span>
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
-                
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link 
-                    href="/profil"
-                    className="group border-2 border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all duration-300 backdrop-blur-sm"
-                  >
-                    <Users size={18} />
-                    <span>Tentang Kami</span>
-                  </Link>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  href="/layanan"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <span>Layanan Publik</span>
+                </Link>
+                <Link 
+                  href="/profil"
+                  className="border-2 border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all duration-300 backdrop-blur-sm"
+                >
+                  <Users size={18} />
+                  <span>Tentang Kami</span>
+                </Link>
+              </div>
+            </div>
             {/* Right Content - Simple Service Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="relative"
-            >
-              {/* Main Service Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-white/20 relative z-10"
-              >
+            <div className="relative">
+              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-white/20 relative z-10">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
@@ -304,7 +150,6 @@ export default function HomePage() {
                     <p className="text-sm text-gray-300">Portal Layanan Terpadu</p>
                   </div>
                 </div>
-                
                 {/* Service List */}
                 <div className="space-y-3 mb-6">
                   {[
@@ -313,11 +158,8 @@ export default function HomePage() {
                     { icon: Shield, label: "Perlindungan", desc: "Perlindungan anak & perempuan" },
                     { icon: Calendar, label: "Agenda Kegiatan", desc: "Jadwal kegiatan dinas" }
                   ].map((item, idx) => (
-                    <motion.div
+                    <div
                       key={idx}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 1 + idx * 0.1 }}
                       className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-colors cursor-pointer group"
                     >
                       <div className="w-8 h-8 bg-white/10 group-hover:bg-emerald-500/20 rounded-lg flex items-center justify-center transition-colors">
@@ -328,16 +170,11 @@ export default function HomePage() {
                         <div className="text-xs text-gray-400">{item.desc}</div>
                       </div>
                       <ArrowRight size={14} className="text-gray-400 group-hover:text-emerald-300 group-hover:translate-x-1 transition-all" />
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-
                 {/* Action Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.5 }}
-                >
+                <div>
                   <Link 
                     href="/layanan"
                     className="w-full bg-emerald-500/90 hover:bg-emerald-500 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"
@@ -345,9 +182,9 @@ export default function HomePage() {
                     <span>Lihat Semua Layanan</span>
                     <ArrowRight size={16} />
                   </Link>
-                </motion.div>
-              </motion.div>
-            </motion.div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
