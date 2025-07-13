@@ -121,18 +121,18 @@ export default function HomePage() {
                   Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-2 w-full">
                 <Link 
                   href="/layanan"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="flex-1 w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-sm"
                 >
                   <span>Layanan Publik</span>
                 </Link>
                 <Link 
                   href="/profil"
-                  className="border-2 border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all duration-300 backdrop-blur-sm"
+                  className="flex-1 w-full sm:w-auto border-2 border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 backdrop-blur-sm text-sm"
                 >
-                  <Users size={18} />
+                  <Users size={15} />
                   <span>Tentang Kami</span>
                 </Link>
               </div>
@@ -237,7 +237,10 @@ export default function HomePage() {
                   <div>
                     <span className="font-semibold text-green-800">{agenda.judul}</span>
                     <div className="text-xs text-gray-500 flex items-center gap-2 mt-1">
-                      <Calendar size={14} /> {agenda.tanggal} <span>|</span> <span><MapPin size={14} /> {agenda.lokasi}</span>
+                      <Calendar size={14} /> {agenda.tanggal} <span>|</span> 
+                      <span className="flex items-center gap-1">
+                        <MapPin size={14} /> {agenda.lokasi}
+                      </span>
                     </div>
                   </div>
                   <span className="text-xs text-green-700 bg-green-50 px-3 py-1 rounded-full font-semibold mt-2 sm:mt-0">{agenda.waktu}</span>
