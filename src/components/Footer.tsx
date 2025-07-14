@@ -92,7 +92,7 @@ export default function Footer() {
                 </div>
                 {/* Media Sosial */}
                 <div>
-                  <h3 className="text-base font-semibold mb-3 text-green-100">Media Sosial</h3>
+                  <h3 className="text-base font-semibold mb-3 text-white">Media Sosial</h3>
                   <div className="flex gap-3">
                     {socialLinks.map((social) => (
                       <a 
@@ -111,7 +111,7 @@ export default function Footer() {
               </div>
               {/* Tautan Cepat */}
               <div className="flex-1">
-                <h3 className="text-base md:text-lg font-semibold mb-3 text-green-100 tracking-wide">Tautan Cepat</h3>
+                <h3 className="text-base md:text-lg font-semibold mb-3 text-white tracking-wide">Tautan Cepat</h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {quickLinks.map((link) => (
                     <li key={link.href}>
@@ -141,7 +141,7 @@ export default function Footer() {
               </div>
               {/* Layanan Terkait */}
               <div className="flex-1">
-                <h3 className="text-base md:text-lg font-semibold mb-3 text-green-100 tracking-wide">Layanan Terkait</h3>
+                <h3 className="text-base md:text-lg font-semibold mb-3 text-white tracking-wide">Layanan Terkait</h3>
                 <ul className="flex flex-col gap-2">
                   {layananLinks.map((layanan) => (
                     <li key={layanan.href}>

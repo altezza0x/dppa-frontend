@@ -3,6 +3,7 @@ import { FileText, Search, Users, TrendingUp, BarChart3, Calendar, Megaphone, Sh
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
+import { colors, colorCombinations, getColor } from '@/config/colors';
 
 // Dummy data layanan publik (pakai string nama icon)
 const layananPublik = [
@@ -89,7 +90,7 @@ export default function HomePage() {
                     <polygon points="30,2 50,17 50,35 30,50 10,35 10,17" fill="none" stroke="currentColor" strokeWidth="1"/>
                   </pattern>
                 </defs>
-                <rect width="100%" height="100%" fill="url(#hexPattern)" className="text-emerald-400"/>
+                <rect width="100%" height="100%" fill="url(#hexPattern)" className={colors.semantic.accent.emerald}/>
               </svg>
             </div>
           </div>
@@ -101,7 +102,7 @@ export default function HomePage() {
                     <polygon points="30,2 50,17 50,35 30,50 10,35 10,17" fill="none" stroke="currentColor" strokeWidth="1"/>
                   </pattern>
                 </defs>
-                <rect width="100%" height="100%" fill="url(#hexPatternRight)" className="text-teal-400"/>
+                <rect width="100%" height="100%" fill="url(#hexPatternRight)" className={colors.semantic.accent.teal}/>
               </svg>
             </div>
           </div>
@@ -110,27 +111,27 @@ export default function HomePage() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             {/* Left Content - Text */}
-            <div className="text-white space-y-8">
+            <div className={`${colors.text.white} space-y-8`}>
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
-                  <span className="block text-emerald-400">Selamat Datang</span>
+                  <span className={`block ${colorCombinations.heroTitle}`}>Selamat Datang</span>
                   <span className="block">di Website</span>
-                  <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Resmi</span>
+                  <span className={`block ${colorCombinations.heroTitle}`}>Resmi</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-lg">
+                <p className={`text-xl md:text-2xl ${colorCombinations.heroSubtitle} leading-relaxed max-w-lg`}>
                   Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-2 w-full">
                 <Link 
                   href="/layanan"
-                  className="flex-1 w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-sm"
+                  className={`flex-1 w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 ${colorCombinations.heroButtonPrimary} px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-sm`}
                 >
                   <span>Layanan Publik</span>
                 </Link>
                 <Link 
                   href="/profil"
-                  className="flex-1 w-full sm:w-auto border-2 border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 backdrop-blur-sm text-sm"
+                  className={`flex-1 w-full sm:w-auto border-2 border-emerald-400/50 ${colorCombinations.heroButtonSecondary} hover:bg-emerald-500/10 px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 backdrop-blur-sm text-sm`}
                 >
                   <Users size={15} />
                   <span>Tentang Kami</span>
@@ -143,11 +144,11 @@ export default function HomePage() {
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
-                    <Shield size={20} className="text-white" />
+                    <Shield size={20} className={colors.components.icon.white} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">Layanan Digital</h3>
-                    <p className="text-sm text-gray-300">Portal Layanan Terpadu</p>
+                    <h3 className={`text-lg font-semibold ${colors.components.hero.cardTitle}`}>Layanan Digital</h3>
+                    <p className={`text-sm ${colors.components.hero.cardSubtitle}`}>Portal Layanan Terpadu</p>
                   </div>
                 </div>
                 {/* Service List */}
@@ -163,13 +164,13 @@ export default function HomePage() {
                       className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-colors cursor-pointer group"
                     >
                       <div className="w-8 h-8 bg-white/10 group-hover:bg-emerald-500/20 rounded-lg flex items-center justify-center transition-colors">
-                        <item.icon size={16} className="text-gray-300 group-hover:text-emerald-300 transition-colors" />
+                        <item.icon size={16} className={`${colors.components.hero.iconDefault} group-hover:${colors.components.hero.iconHover} transition-colors`} />
                       </div>
                       <div className="flex-1">
-                        <div className="text-sm font-medium text-white">{item.label}</div>
-                        <div className="text-xs text-gray-400">{item.desc}</div>
+                        <div className={`text-sm font-medium ${colors.components.hero.serviceLabel}`}>{item.label}</div>
+                        <div className={`text-xs ${colors.components.hero.serviceDesc}`}>{item.desc}</div>
                       </div>
-                      <ArrowRight size={14} className="text-gray-400 group-hover:text-emerald-300 group-hover:translate-x-1 transition-all" />
+                      <ArrowRight size={14} className={`${colors.text.gray.base} group-hover:${colors.components.hero.iconHover} group-hover:translate-x-1 transition-all`} />
                     </div>
                   ))}
                 </div>
@@ -177,7 +178,7 @@ export default function HomePage() {
                 <div>
                   <Link 
                     href="/layanan"
-                    className="w-full bg-emerald-500/90 hover:bg-emerald-500 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"
+                    className={`w-full bg-emerald-500/90 hover:bg-emerald-500 ${colors.text.white} font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors backdrop-blur-sm`}
                   >
                     <span>Lihat Semua Layanan</span>
                     <ArrowRight size={16} />
@@ -198,7 +199,7 @@ export default function HomePage() {
           variants={fadeInUp}
           className="mb-8"
         >
-          <h2 className="text-xl md:text-2xl font-bold text-green-800 mb-6 text-center">Layanan Publik Populer</h2>
+          <h2 className={`text-xl md:text-2xl font-bold ${colorCombinations.sectionTitle} mb-6 text-center`}>Layanan Publik Populer</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {layananPublik.map((layanan, idx) => {
               const Icon = iconMap[layanan.icon as keyof typeof iconMap];
@@ -208,10 +209,10 @@ export default function HomePage() {
                   href={layanan.link}
                   className="bg-white rounded-xl shadow-md p-5 flex flex-col items-center gap-2 hover:bg-green-50 transition group"
                 >
-                  <span className="bg-green-100 text-green-700 p-3 rounded-full group-hover:bg-green-200 transition-colors">
+                  <span className={`bg-green-100 ${colors.primary.green.medium} p-3 rounded-full group-hover:bg-green-200 transition-colors`}>
                     {Icon && <Icon size={20} />}
                   </span>
-                  <span className="font-semibold text-green-800 text-sm text-center group-hover:text-green-600 transition-colors">{layanan.nama}</span>
+                  <span className={`font-semibold ${colorCombinations.serviceTitle} text-sm text-center group-hover:${colors.components.service.titleHover} transition-colors`}>{layanan.nama}</span>
                 </Link>
               );
             })}
@@ -230,24 +231,24 @@ export default function HomePage() {
             variants={fadeInUp}
             className="bg-white rounded-xl shadow-md p-6 mb-4 md:mb-0"
           >
-            <h3 className="text-lg font-bold text-green-800 mb-4 flex items-center gap-2"><Calendar size={20} className="text-green-600" /> Agenda Kegiatan</h3>
+            <h3 className={`text-lg font-bold ${colors.components.agenda.title} mb-4 flex items-center gap-2`}><Calendar size={20} className={colors.components.icon.primary} /> Agenda Kegiatan</h3>
             <ul className="divide-y divide-green-50">
               {agendaKegiatan.map((agenda, idx) => (
                 <li key={idx} className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
-                    <span className="font-semibold text-green-800">{agenda.judul}</span>
-                    <div className="text-xs text-gray-500 flex items-center gap-2 mt-1">
+                    <span className={`font-semibold ${colors.components.agenda.eventTitle}`}>{agenda.judul}</span>
+                    <div className={`text-xs ${colors.components.agenda.eventMeta} flex items-center gap-2 mt-1`}>
                       <Calendar size={14} /> {agenda.tanggal} <span>|</span> 
                       <span className="flex items-center gap-1">
                         <MapPin size={14} /> {agenda.lokasi}
                       </span>
                     </div>
                   </div>
-                  <span className="text-xs text-green-700 bg-green-50 px-3 py-1 rounded-full font-semibold mt-2 sm:mt-0">{agenda.waktu}</span>
+                  <span className={`text-xs ${colors.components.agenda.eventTime} bg-green-50 px-3 py-1 rounded-full font-semibold mt-2 sm:mt-0`}>{agenda.waktu}</span>
                 </li>
               ))}
             </ul>
-            <Link href="/agenda" className="text-green-600 text-sm font-semibold hover:underline mt-4 inline-flex items-center gap-1 group">Lihat Semua Agenda <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></Link>
+            <Link href="/agenda" className={`${colors.components.agenda.link} text-sm font-semibold hover:underline mt-4 inline-flex items-center gap-1 group`}>Lihat Semua Agenda <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></Link>
           </motion.div>
           {/* Layanan Digital Utama */}
           <motion.div
@@ -257,27 +258,27 @@ export default function HomePage() {
             variants={fadeInUp}
             className="bg-white rounded-xl shadow-md p-6 flex flex-col justify-center"
           >
-            <h3 className="text-lg font-bold text-green-800 mb-4 flex items-center gap-2"><FileCheck size={20} className="text-green-600" /> Layanan Digital Utama</h3>
+            <h3 className={`text-lg font-bold ${colorCombinations.sectionTitle} mb-4 flex items-center gap-2`}><FileCheck size={20} className={colors.components.icon.primary} /> Layanan Digital Utama</h3>
             <div className="grid grid-cols-2 gap-4">
               <Link href="/layanan/e-ktp" className="flex flex-col items-center gap-2 bg-green-50 rounded-lg p-4 hover:bg-green-100 transition">
-                <FileText size={28} className="text-green-700" />
-                <span className="font-semibold text-green-800 text-sm text-center">e-KTP Online</span>
+                <FileText size={28} className={colors.components.service.icon} />
+                <span className={`font-semibold ${colorCombinations.serviceTitle} text-sm text-center`}>e-KTP Online</span>
               </Link>
               <Link href="/layanan/perizinan-online" className="flex flex-col items-center gap-2 bg-green-50 rounded-lg p-4 hover:bg-green-100 transition">
-                <FileCheck size={28} className="text-green-700" />
-                <span className="font-semibold text-green-800 text-sm text-center">Perizinan Online</span>
+                <FileCheck size={28} className={colors.components.service.icon} />
+                <span className={`font-semibold ${colorCombinations.serviceTitle} text-sm text-center`}>Perizinan Online</span>
               </Link>
               <Link href="/layanan/bantuan-sosial" className="flex flex-col items-center gap-2 bg-green-50 rounded-lg p-4 hover:bg-green-100 transition">
-                <Users size={28} className="text-green-700" />
-                <span className="font-semibold text-green-800 text-sm text-center">Bantuan Sosial</span>
+                <Users size={28} className={colors.components.service.icon} />
+                <span className={`font-semibold ${colorCombinations.serviceTitle} text-sm text-center`}>Bantuan Sosial</span>
               </Link>
               <Link href="/layanan/pengaduan-kekerasan" className="flex flex-col items-center gap-2 bg-green-50 rounded-lg p-4 hover:bg-green-100 transition">
-                <Megaphone size={28} className="text-green-700" />
-                <span className="font-semibold text-green-800 text-sm text-center">Pengaduan Kekerasan</span>
+                <Megaphone size={28} className={colors.components.service.icon} />
+                <span className={`font-semibold ${colorCombinations.serviceTitle} text-sm text-center`}>Pengaduan Kekerasan</span>
               </Link>
             </div>
             <div className="flex justify-end mt-4">
-              <Link href="/layanan" className="text-green-600 text-sm font-semibold hover:underline inline-flex items-center gap-1 group">Semua Layanan <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" /></Link>
+              <Link href="/layanan" className={`${colorCombinations.cardLink} text-sm font-semibold hover:underline inline-flex items-center gap-1 group`}>Semua Layanan <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" /></Link>
             </div>
           </motion.div>
         </div>
@@ -292,7 +293,7 @@ export default function HomePage() {
           variants={fadeInUp}
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-            <h2 className="text-xl md:text-2xl font-bold text-green-800">Berita & Pengumuman Terbaru</h2>
+            <h2 className={`text-xl md:text-2xl font-bold ${colorCombinations.sectionTitle}`}>Berita & Pengumuman Terbaru</h2>
             <div className="relative w-full md:w-72">
               <input type="text" placeholder="Cari berita..." className="w-full pl-10 pr-4 py-2 border border-green-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white" />
               <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-green-400" />
@@ -307,20 +308,20 @@ export default function HomePage() {
               >
                 <div className="p-5 flex-1 flex flex-col">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs text-gray-500 flex items-center gap-1"><Calendar size={14} className="text-green-600" />{article.date}</span>
-                    <span className="text-xs text-gray-500 flex items-center gap-1"><FileText size={14} className="text-green-600" />{article.views}</span>
+                    <span className={`text-xs ${colors.components.news.meta} flex items-center gap-1`}><Calendar size={14} className={colors.components.icon.primary} />{article.date}</span>
+                    <span className={`text-xs ${colors.components.news.meta} flex items-center gap-1`}><FileText size={14} className={colors.components.icon.primary} />{article.views}</span>
                   </div>
-                  <h2 className="text-lg font-bold text-green-800 mb-2 leading-tight group-hover:text-green-600 transition-colors">
+                  <h2 className={`text-lg font-bold ${colors.components.news.title} mb-2 leading-tight group-hover:${colors.components.news.titleHover} transition-colors`}>
                     <Link href="#">{article.title}</Link>
                   </h2>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{article.excerpt}</p>
-                  <Link href="#" className="inline-flex items-center gap-1 text-green-600 text-sm font-semibold hover:text-green-700 mt-auto group-hover:gap-2 transition-all">Baca Selengkapnya <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></Link>
+                  <p className={`${colors.components.news.content} text-sm mb-4 line-clamp-3`}>{article.excerpt}</p>
+                  <Link href="#" className={`inline-flex items-center gap-1 ${colors.components.news.link} text-sm font-semibold hover:${colors.components.news.linkHover} mt-auto group-hover:gap-2 transition-all`}>Baca Selengkapnya <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></Link>
                 </div>
               </motion.div>
             ))}
           </div>
           <div className="flex justify-center mt-8">
-            <Link href="/berita" className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center gap-2">Lihat Semua Berita <ArrowRight size={16} /></Link>
+            <Link href="/berita" className={`bg-green-600 ${colors.text.white} px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center gap-2`}>Lihat Semua Berita <ArrowRight size={16} /></Link>
           </div>
         </motion.div>
       </section>
@@ -333,29 +334,29 @@ export default function HomePage() {
             <div className="flex items-center gap-4 w-full">
               <img src="/images/gubernur.jpg" alt="Gubernur Sumatera Barat" className="w-20 h-24 object-cover rounded-lg shadow-md" />
               <div>
-                <h4 className="font-bold text-gray-900 text-lg">H. Mahyeldi Ansharullah, SP</h4>
-                <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded mb-1">Gubernur</span>
-                <p className="text-xs text-gray-500">"Mewujudkan Sumatera Barat Madani, Unggul dan Berkelanjutan"</p>
+                <h4 className={`font-bold ${colors.components.contact.title} text-lg`}>H. Mahyeldi Ansharullah, SP</h4>
+                <span className={`inline-block bg-green-100 ${colors.components.contact.subtitle} text-xs font-semibold px-2 py-0.5 rounded mb-1`}>Gubernur</span>
+                <p className={`text-xs ${colors.components.contact.text}`}>"Mewujudkan Sumatera Barat Madani, Unggul dan Berkelanjutan"</p>
               </div>
             </div>
             <div className="flex items-center gap-4 w-full">
               <img src="/images/wagub.jpg" alt="Wakil Gubernur Sumatera Barat" className="w-20 h-24 object-cover rounded-lg shadow-md" />
               <div>
-                <h4 className="font-bold text-gray-900 text-lg">Vasko Ruseimy, ST</h4>
-                <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded mb-1">Wakil Gubernur</span>
-                <p className="text-xs text-gray-500">"Bersama membangun masa depan generasi emas Sumbar"</p>
+                <h4 className={`font-bold ${colors.components.contact.title} text-lg`}>Vasko Ruseimy, ST</h4>
+                <span className={`inline-block bg-green-100 ${colors.components.contact.subtitle} text-xs font-semibold px-2 py-0.5 rounded mb-1`}>Wakil Gubernur</span>
+                <p className={`text-xs ${colors.components.contact.text}`}>"Bersama membangun masa depan generasi emas Sumbar"</p>
               </div>
             </div>
           </div>
           {/* Kontak & Pengaduan */}
           <div className="flex-1 bg-white rounded-xl shadow-md p-6 flex flex-col gap-3 justify-center min-w-[260px]">
-            <h3 className="text-base font-bold text-green-800 mb-2 flex items-center gap-2"><MessageSquare size={20} className="text-green-600" /> Kontak & Pengaduan Cepat</h3>
-            <div className="flex flex-col gap-2 text-green-700 text-sm">
+            <h3 className={`text-base font-bold ${colorCombinations.sectionTitle} mb-2 flex items-center gap-2`}><MessageSquare size={20} className={colors.components.icon.primary} /> Kontak & Pengaduan Cepat</h3>
+            <div className={`flex flex-col gap-2 ${colors.components.contact.link} text-sm`}>
               <span className="flex items-center gap-2"><Phone size={16}/> 0751-123456</span>
               <span className="flex items-center gap-2"><Mail size={16}/> dp3ap2kb@sumbarprov.go.id</span>
               <span className="flex items-center gap-2"><MapPin size={16}/> Jl. Khatib Sulaiman No.1, Padang</span>
             </div>
-            <Link href="/lapor" className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center gap-2 justify-center mt-2"><MessageSquare size={18} /> Lapor Pengaduan</Link>
+            <Link href="/lapor" className={`bg-green-600 ${colors.text.white} px-4 py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center gap-2 justify-center mt-2`}><MessageSquare size={18} /> Lapor Pengaduan</Link>
           </div>
         </div>
       </section>
@@ -363,13 +364,13 @@ export default function HomePage() {
       {/* Statistik Pengunjung (simple, paling bawah) */}
       <section className="container mx-auto px-4 pb-8">
         <div className="bg-white rounded-xl shadow-md p-4">
-          <h3 className="text-base font-bold text-green-800 mb-4 flex items-center gap-2"><BarChart3 size={18} className="text-green-600" /> Statistik Pengunjung</h3>
+          <h3 className={`text-base font-bold ${colors.components.stats.title} mb-4 flex items-center gap-2`}><BarChart3 size={18} className={colors.components.icon.primary} /> Statistik Pengunjung</h3>
           <div className="flex gap-3 overflow-x-auto md:grid md:grid-cols-4 md:gap-4">
             {statistikPengunjung.map((stat, idx) => (
               <div key={idx} className="min-w-[120px] bg-green-50 rounded-lg p-3 text-center flex-shrink-0">
-                <div className="text-green-600 mb-1 flex justify-center">{stat.icon}</div>
-                <div className="text-lg font-bold text-green-800 mb-0.5">{stat.jumlah}</div>
-                <div className="text-xs text-gray-600">{stat.label}</div>
+                <div className={`${colors.components.icon.primary} mb-1 flex justify-center`}>{stat.icon}</div>
+                <div className={`text-lg font-bold ${colors.components.stats.value} mb-0.5`}>{stat.jumlah}</div>
+                <div className={`text-xs ${colors.components.stats.label}`}>{stat.label}</div>
               </div>
             ))}
           </div>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   description: "Website Resmi Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana (DP3AP2KB) Provinsi Sumatera Barat.",
   icons: {
-    icon: "/favicon.png", // Pastikan favicon.png ada di /public
+    icon: "/favicon.ico", // Pastikan favicon.png ada di /public
   },
 };
 
