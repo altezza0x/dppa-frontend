@@ -76,35 +76,23 @@ export default function HomePage() {
   const iconMap = { Shield, Users, Scale, FileCheck };
   return (
     <>
-      {/* Hero Section - Split Layout Tanpa Animasi */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        {/* Split Background Dekoratif (tetap, tanpa animasi) */}
-        <div className="absolute inset-0 flex">
-          <div className="w-1/2 h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative">
-            {/* Dekorasi dots/hexagon bisa tetap statis di sini jika ingin */}
-            <div className="absolute inset-0 opacity-10">
-              <svg width="100%" height="100%" className="w-full h-full">
-                <defs>
-                  <pattern id="hexPattern" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
-                    <polygon points="30,2 50,17 50,35 30,50 10,35 10,17" fill="none" stroke="currentColor" strokeWidth="1"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#hexPattern)" className="text-emerald-400"/>
-              </svg>
-            </div>
-          </div>
-          <div className="w-1/2 h-full bg-gradient-to-bl from-slate-900 via-slate-800 to-slate-900 relative">
-            <div className="absolute inset-0 opacity-8">
-              <svg width="100%" height="100%" className="w-full h-full">
-                <defs>
-                  <pattern id="hexPatternRight" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
-                    <polygon points="30,2 50,17 50,35 30,50 10,35 10,17" fill="none" stroke="currentColor" strokeWidth="1"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#hexPatternRight)" className="text-teal-400"/>
-              </svg>
-            </div>
-          </div>
+      {/* Hero Section - Background Image */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          {/* Overlay gradient on top of the logo image */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95 z-10"
+            style={{
+              backgroundImage: `url('/images/bg.jpg')`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              opacity: 0.15
+            }}
+          ></div>
+          {/* Dark base background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         </div>
         {/* Content Container */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-16">
