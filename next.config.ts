@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
-const securityHeaders = [
+// Security headers untuk production
+const productionSecurityHeaders = [
   {
     key: 'Content-Security-Policy',
     value: `
@@ -63,6 +64,42 @@ const securityHeaders = [
     value: 'same-origin'
   }
 ];
+
+// Security headers untuk development (lebih permissive)
+const developmentSecurityHeaders = [
+  {
+    key: 'Content-Security-Policy',
+    value: `
+      default-src 'self' 'unsafe-inline' 'unsafe-eval';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://vercel.live;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      img-src 'self' data: https: blob: https://images.unsplash.com;
+      font-src 'self' https://fonts.gstatic.com;
+      connect-src 'self' https://api.example.com https://vercel.live ws: wss:;
+      media-src 'self' https:;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+    `.replace(/\s{2,}/g, ' ').trim()
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff'
+  },
+  {
+    key: 'Referrer-Policy',
+    value: 'no-referrer-when-downgrade'
+  },
+  {
+    key: 'X-DNS-Prefetch-Control',
+    value: 'on'
+  },
+  // Tidak menggunakan Cross-Origin-Opener-Policy di development
+  // untuk menghindari masalah dengan network access
+];
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+const securityHeaders = isDevelopment ? developmentSecurityHeaders : productionSecurityHeaders;
 
 const nextConfig: NextConfig = {
   async headers() {
