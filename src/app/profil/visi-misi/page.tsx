@@ -38,11 +38,9 @@ export default function VisiMisi() {
             <Link href="/profil" className="hover:underline text-green-700 font-semibold">Profil</Link>
             <span className="mx-1">/</span>
           </li>
-          <li className="text-gray-700">Visi Misi</li>
+          <span className="text-gray-700">Visi Misi</span>
         </ol>
       </nav>
-      
-      {/* Judul utama */}
       <div className="bg-green-700 text-white py-4 px-6 rounded-lg shadow-lg mb-6 text-center">
         <h1 className="text-2xl md:text-3xl font-bold tracking-wide uppercase">
           VISI & MISI DP3AP2KB SUMATERA BARAT
