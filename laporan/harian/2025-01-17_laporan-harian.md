@@ -1,4 +1,4 @@
-# 📅 Laporan Harian - 17/01/2025
+# 📅 Laporan Harian - Kamis, 17/07/2025
 
 ## 🔄 Yang Diperbarui
 - Refactoring halaman Tugas dan Fungsi menjadi lebih minimalis dan elegan
@@ -21,4 +21,4 @@
 
 ---
 
-**Tanggal**: 17/01/2025
+**Tanggal**: 17/07/2025

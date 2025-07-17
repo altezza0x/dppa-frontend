@@ -1,4 +1,4 @@
-# 📅 Laporan Harian - [DD/MM/YYYY]
+# 📅 Laporan Harian - [Hari], [DD/MM/YYYY]
 
 ## � Yang Diperbarui
 - [Deskripsi update yang dilakukan]
