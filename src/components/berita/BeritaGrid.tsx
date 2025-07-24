@@ -25,20 +25,19 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        duration: 0.8
+        staggerChildren: 0.08,
+        duration: 0.4
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: { 
-        duration: 0.7
+        duration: 0.5
       }
     }
   };
@@ -58,11 +57,11 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
         >
           <a
             href={`/berita/${berita.slug}`}
-            className="block bg-white rounded-3xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-2xl hover:border-blue-200 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+            className="block bg-white rounded-3xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           >
           <div className="relative">
             <div className="w-full h-48 sm:h-52 md:h-56 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               {berita.featured && (
                 <div className="absolute top-3 left-3 md:top-4 md:left-4 z-10">
                   <span className="px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold rounded-full shadow-lg">
@@ -70,7 +69,7 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
                   </span>
                 </div>
               )}
-              <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <ArrowRight size={14} className="md:hidden text-blue-600" />
                   <ArrowRight size={16} className="hidden md:block text-blue-600" />

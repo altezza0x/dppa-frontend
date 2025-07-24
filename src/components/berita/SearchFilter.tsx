@@ -86,12 +86,6 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
 
       {/* Filter Categories */}
       <div className="space-y-6">
-        {/* Section Title */}
-        <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">Filter Kategori</h3>
-          <p className="text-sm text-gray-600">Pilih kategori untuk menyaring berita</p>
-        </div>
-
         {/* Mobile Filter Toggle */}
         <div className="lg:hidden flex justify-center">
           <motion.button
@@ -117,7 +111,6 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
         >
           <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
             {kategoriList.map((kategori) => {
-              const IconComponent = kategori.icon;
               const isActive = selectedKategori === kategori.key;
               
               return (
@@ -135,10 +128,6 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                     }
                   `}
                 >
-                  <IconComponent 
-                    size={20} 
-                    className={isActive ? "text-white" : "text-blue-600"} 
-                  />
                   <span className="text-sm font-semibold">{kategori.label}</span>
                   {isActive && (
                     <motion.div

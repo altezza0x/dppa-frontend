@@ -16,30 +16,30 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
   return (
     <section className={`relative overflow-hidden ${className}`}>
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.6 }}
         className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
       >
-        <div className="grid lg:grid-cols-2 gap-8 items-center p-8 lg:p-12">
-          <div className="space-y-6">
+        <div className="grid lg:grid-cols-2 gap-6 items-center p-6 lg:p-8">
+          <div className="space-y-4">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-full mb-4">
+              <span className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-full mb-3">
                 Berita Utama
               </span>
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 leading-tight">
+              <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 leading-tight">
                 {mainNews.title}
               </h1>
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="flex items-center gap-6 text-sm text-gray-600"
             >
               <span className="flex items-center gap-2">
@@ -53,18 +53,18 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
             </motion.div>
             
             <motion.p
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-lg text-gray-600 leading-relaxed"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-base text-gray-600 leading-relaxed"
             >
               {mainNews.excerpt}
             </motion.p>
             
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-wrap gap-3"
             >
               {mainNews.kategori.map((kategori, index) => (
@@ -78,9 +78,9 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
               <a
                 href={mainNews.link}
@@ -96,15 +96,15 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
           </div>
           
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-200 relative overflow-hidden shadow-2xl">
+            <div className="aspect-[5/3] rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-200 relative overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
+              <div className="absolute bottom-4 left-4">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
                   <span className="text-blue-600 font-medium text-sm">
                     {mainNews.badge}
                   </span>

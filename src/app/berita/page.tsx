@@ -7,7 +7,7 @@ import BeritaGrid from "@/components/berita/BeritaGrid";
 import BeritaSidebar from "@/components/berita/BeritaSidebar";
 import SearchFilter from "@/components/berita/SearchFilter";
 import Container from "@/components/ui/Container";
-import { useBeritaFilter, useScrollAnimation } from "../../hooks/useBerita";
+import { useBeritaFilter } from "../../hooks/useBerita";
 
 export default function BeritaPage() {
   const {
@@ -18,8 +18,6 @@ export default function BeritaPage() {
     handleKategoriChange
   } = useBeritaFilter();
 
-  const { ref, inView } = useScrollAnimation();
-
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       {/* Hero Section */}
@@ -28,10 +26,9 @@ export default function BeritaPage() {
       {/* Main Content */}
       <Container className="py-16">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="space-y-12"
         >
           {/* Search and Filter */}

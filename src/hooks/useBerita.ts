@@ -113,6 +113,42 @@ export const useBeritaFilter = () => {
       author: "Tim Kebersihan",
       views: 589,
       featured: false
+    },
+    {
+      id: 7,
+      title: "Peluncuran Aplikasi Mobile DPPA untuk Layanan Masyarakat",
+      slug: "peluncuran-aplikasi-mobile-dppa",
+      excerpt: "Inovasi terbaru dalam memberikan layanan digital yang mudah diakses masyarakat melalui smartphone.",
+      image: "/public/images/bg.jpg",
+      kategori: ["berita", "teknologi"],
+      tanggal: "2025-01-05",
+      author: "Tim IT",
+      views: 1205,
+      featured: true
+    },
+    {
+      id: 8,
+      title: "Seminar Nasional Perlindungan Anak di Era Digital",
+      slug: "seminar-perlindungan-anak-digital",
+      excerpt: "Diskusi komprehensif tentang tantangan dan solusi perlindungan anak dalam menghadapi era teknologi digital.",
+      image: "/public/images/bg.jpg",
+      kategori: ["kegiatan", "perlindungan-anak"],
+      tanggal: "2025-01-03",
+      author: "Bidang Perlindungan Anak",
+      views: 834,
+      featured: false
+    },
+    {
+      id: 9,
+      title: "Program Pemberdayaan UMKM Perempuan Tahun 2025",
+      slug: "program-pemberdayaan-umkm-perempuan",
+      excerpt: "Inisiatif strategis untuk mendukung pengembangan usaha mikro, kecil, dan menengah yang dikelola oleh perempuan.",
+      image: "/public/images/bg.jpg",
+      kategori: ["program", "pemberdayaan"],
+      tanggal: "2025-01-01",
+      author: "Bidang Pemberdayaan Perempuan",
+      views: 692,
+      featured: false
     }
   ];
 
