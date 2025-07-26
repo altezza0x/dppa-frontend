@@ -38,7 +38,7 @@ export default function Sejarah() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
       <Container className="py-16">
         {/* Hero Section */}
         <motion.div
@@ -49,7 +49,7 @@ export default function Sejarah() {
         >
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             Sejarah Singkat
-            <span className="block text-blue-600">DP3AP2KB Sumbar</span>
+            <span className="block text-green-600">DP3AP2KB Sumbar</span>
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -105,14 +105,14 @@ export default function Sejarah() {
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-200 via-purple-200 to-orange-200"></div>
+            <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-200 via-emerald-200 to-orange-200"></div>
             
             <div className="space-y-12">
               {timelineData.map((item, index) => {
                 const colorClasses: { [key: string]: string } = {
-                  blue: "bg-blue-500 border-blue-200",
+                  blue: "bg-green-500 border-green-200",
                   green: "bg-green-500 border-green-200",
-                  purple: "bg-purple-500 border-purple-200",
+                  purple: "bg-emerald-500 border-emerald-200",
                   orange: "bg-orange-500 border-orange-200"
                 };
                 
@@ -132,9 +132,9 @@ export default function Sejarah() {
                     <div className="flex-1 bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
                       <div className="flex items-center gap-3 mb-3">
                         <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                          item.color === 'blue' ? 'bg-blue-100 text-blue-700' :
+                          item.color === 'blue' ? 'bg-green-100 text-green-700' :
                           item.color === 'green' ? 'bg-green-100 text-green-700' :
-                          item.color === 'purple' ? 'bg-purple-100 text-purple-700' :
+                          item.color === 'purple' ? 'bg-emerald-100 text-emerald-700' :
                           'bg-orange-100 text-orange-700'
                         }`}>
                           {item.year}
@@ -161,7 +161,7 @@ export default function Sejarah() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl text-white p-8 lg:p-12"
+          className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-3xl text-white p-8 lg:p-12"
         >
           <div className="text-center">
             <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
@@ -172,7 +172,7 @@ export default function Sejarah() {
               Dinas DP3AP2KB Provinsi Sumatera Barat
             </h2>
             
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl text-green-100 max-w-3xl mx-auto leading-relaxed mb-8">
               Kini mengemban dua urusan utama: Pemberdayaan Perempuan & Perlindungan Anak, 
               serta Pengendalian Penduduk & Keluarga Berencana untuk melayani masyarakat Sumatera Barat.
             </p>

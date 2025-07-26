@@ -18,19 +18,24 @@ import {
   Building
 } from "lucide-react";
 
-// Animation variants for better performance
+// Simplified animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+};
+
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.08
     }
   }
 };
 
-const slideInLeft = {
-  initial: { opacity: 0, x: -20 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.5 }
+const staggerItem = {
+  initial: { opacity: 0, y: 15 },
+  animate: { opacity: 1, y: 0 }
 };
 
 // Data constants moved to separate objects for better organization
@@ -160,15 +165,14 @@ const CONTACT_INFO = [
 // Memoized Components for better performance
 const BreadcrumbNav = memo(() => (
   <motion.nav
-    initial={{ opacity: 0, y: -10 }}
-    animate={{ opacity: 1, y: 0 }}
+    {...fadeInUp}
     className="flex items-center gap-1 text-sm text-gray-600"
   >
-    <Link href="/" className="hover:underline text-green-700 font-semibold">
+    <Link href="/" className="hover:underline text-green-700 font-semibold transition-colors">
       Beranda
     </Link>
     <ChevronRight size={16} className="text-gray-400" />
-    <Link href="/profil" className="hover:underline text-green-700 font-semibold">
+    <Link href="/profil" className="hover:underline text-green-700 font-semibold transition-colors">
       Profil
     </Link>
     <ChevronRight size={16} className="text-gray-400" />
@@ -181,9 +185,7 @@ BreadcrumbNav.displayName = 'BreadcrumbNav';
 const TugasPokokSection = memo(() => (
   <div className="mb-8">
     <motion.h2 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      {...fadeInUp}
       className="text-2xl font-bold text-gray-900 mb-6 text-center"
     >
       {TUGAS_POKOK.title}
@@ -193,7 +195,7 @@ const TugasPokokSection = memo(() => (
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.6 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
         className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-xl"
       >
         <p className="text-green-800 leading-relaxed italic">
@@ -204,7 +206,7 @@ const TugasPokokSection = memo(() => (
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
       >
         <h3 className="font-semibold text-gray-900 mb-4">Dasar Hukum:</h3>
         <motion.div 
@@ -216,14 +218,14 @@ const TugasPokokSection = memo(() => (
           {TUGAS_POKOK.dasarHukum.map((hukum, index) => (
             <motion.div 
               key={index}
-              variants={slideInLeft}
-              className="p-4 border border-gray-200 rounded-xl hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-300 group"
+              variants={staggerItem}
+              className="p-4 border border-gray-200 rounded-xl hover:border-green-200 hover:bg-green-50/30 transition-all duration-300 group"
             >
               <div className="flex items-start gap-3 text-gray-700">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-blue-600 text-xs font-bold">{index + 1}</span>
+                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-green-600 text-xs font-bold">{index + 1}</span>
                 </div>
-                <span className="group-hover:text-blue-700 transition-colors">{hukum}</span>
+                <span className="group-hover:text-green-700 transition-colors">{hukum}</span>
               </div>
             </motion.div>
           ))}
@@ -238,9 +240,7 @@ TugasPokokSection.displayName = 'TugasPokokSection';
 const FungsiUtamaSection = memo(() => (
   <div>
     <motion.h2 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      {...fadeInUp}
       className="text-2xl font-bold text-gray-900 mb-6 text-center"
     >
       Fungsi Utama
@@ -255,15 +255,15 @@ const FungsiUtamaSection = memo(() => (
       {FUNGSI_UTAMA.map((fungsi, index) => (
         <motion.div
           key={fungsi.id}
-          variants={slideInLeft}
-          whileHover={{ scale: 1.02 }}
-          className="p-4 border border-gray-200 rounded-xl hover:border-green-200 hover:bg-green-50/30 transition-all duration-300 group cursor-pointer"
+          variants={staggerItem}
+          whileHover={{ scale: 1.01 }}
+          className="p-6 border border-gray-200 rounded-xl hover:border-green-200 hover:bg-green-50/30 transition-all duration-300 group cursor-pointer"
         >
           <div className="w-full">
-            <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
+            <h3 className="font-semibold text-gray-900 mb-3 group-hover:text-green-700 transition-colors">
               {fungsi.title}
             </h3>
-            <p className="text-gray-600 text-sm leading-relaxed">{fungsi.description}</p>
+            <p className="text-gray-600 leading-relaxed">{fungsi.description}</p>
           </div>
         </motion.div>
       ))}
@@ -275,19 +275,19 @@ FungsiUtamaSection.displayName = 'FungsiUtamaSection';
 
 const PejabatCard = memo(({ pejabat, index }: { pejabat: typeof PEJABAT[number], index: number }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
+    initial={{ opacity: 0, y: 15 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ delay: index * 0.1 }}
-    whileHover={{ scale: 1.05 }}
+    transition={{ delay: index * 0.1, duration: 0.5 }}
+    whileHover={{ y: -2 }}
     className="text-center cursor-pointer"
   >
-    <div className="w-20 h-24 relative mx-auto mb-3 rounded-xl overflow-hidden shadow-md">
+    <div className="w-20 h-24 relative mx-auto mb-3 rounded-xl overflow-hidden shadow-md transition-shadow duration-300 hover:shadow-lg">
       <Image 
         src={pejabat.image} 
         alt={`${pejabat.nama} - ${pejabat.jabatan}`} 
         fill 
-        className="object-cover object-top" 
+        className="object-cover object-top transition-transform duration-300 hover:scale-105" 
         sizes="80px"
         priority={index === 0}
       />
@@ -313,14 +313,14 @@ const BeritaCard = memo(({ berita, index }: { berita: typeof BERITA_POPULER[numb
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
     >
       <Link 
         href={berita.link}
-        className="group block hover:bg-gray-50 rounded-lg p-3 transition-colors"
+        className="group block hover:bg-gray-50 rounded-lg p-3 transition-all duration-300"
       >
         <div className="flex gap-3">
           <div className="w-16 h-12 relative rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
@@ -328,7 +328,7 @@ const BeritaCard = memo(({ berita, index }: { berita: typeof BERITA_POPULER[numb
               src={berita.image} 
               alt={berita.title} 
               fill 
-              className="object-cover" 
+              className="object-cover transition-transform duration-300 group-hover:scale-105" 
               sizes="64px"
             />
           </div>
@@ -356,15 +356,15 @@ const QuickLinkItem = memo(({ link, index }: { link: typeof QUICK_LINKS[number],
     initial={{ opacity: 0, x: -10 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    transition={{ delay: index * 0.1 }}
+    transition={{ delay: index * 0.05, duration: 0.4 }}
   >
     <Link
       href={link.href}
-      className={`flex items-center gap-3 w-full p-3 rounded-lg transition-all duration-200 text-sm ${link.color}`}
+      className={`flex items-center gap-3 w-full p-3 rounded-lg transition-all duration-300 text-sm hover:shadow-sm ${link.color}`}
     >
       <link.icon size={16} />
       <span className="font-medium">{link.label}</span>
-      <ChevronRight size={14} className="ml-auto" />
+      <ChevronRight size={14} className="ml-auto transition-transform duration-300 group-hover:translate-x-1" />
     </Link>
   </motion.div>
 ));
@@ -391,9 +391,9 @@ const HeaderSection = memo(() => (
     <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-8">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center"
         >
           <h1 className="text-3xl md:text-4xl font-bold tracking-wide">
@@ -416,10 +416,10 @@ HeaderSection.displayName = 'HeaderSection';
 
 const MainContent = memo(() => (
   <motion.section
-    initial={{ opacity: 0, y: 30 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.8 }}
+    transition={{ duration: 0.6 }}
     className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200"
   >
     <TugasPokokSection />
@@ -440,6 +440,7 @@ const Sidebar = memo(() => (
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
       className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
     >
       <h3 className="font-bold text-gray-900 mb-6 text-center">
@@ -457,7 +458,7 @@ const Sidebar = memo(() => (
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.1 }}
+      transition={{ delay: 0.1, duration: 0.5 }}
       className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
     >
       <h3 className="font-bold text-gray-900 mb-4">Berita Terkait</h3>
@@ -479,7 +480,7 @@ const Sidebar = memo(() => (
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.2 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
       className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
     >
       <h3 className="font-bold text-gray-900 mb-4">Akses Cepat</h3>
@@ -495,7 +496,7 @@ const Sidebar = memo(() => (
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.3 }}
+      transition={{ delay: 0.3, duration: 0.5 }}
       className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-6 text-white shadow-lg"
     >
       <h3 className="font-bold mb-4">Hubungi Kami</h3>
@@ -506,7 +507,7 @@ const Sidebar = memo(() => (
       </div>
       <Link
         href="/profil/hubungi"
-        className="block w-full text-center bg-white/20 hover:bg-white/30 py-3 rounded-lg font-medium transition-colors mt-4"
+        className="block w-full text-center bg-white/20 hover:bg-white/30 py-3 rounded-lg font-medium transition-all duration-300 mt-4"
       >
         Kontak Lengkap
       </Link>

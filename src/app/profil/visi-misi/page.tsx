@@ -20,42 +20,62 @@ export default function VisiMisi() {
   const [modalImg, setModalImg] = useState<null | typeof galleryImages[0]>(null);
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -16 }}
-      transition={{ duration: 0.28, ease: "easeInOut" }}
-      className="max-w-6xl mx-auto py-10 px-4"
-    >
-      {/* Breadcrumb */}
-      <nav className="mb-6 text-sm text-gray-500" aria-label="Breadcrumb">
-        <ol className="list-none flex flex-wrap gap-1">
-          <li>
-            <Link href="/" className="hover:underline text-green-700 font-semibold">Beranda</Link>
-            <span className="mx-1">/</span>
-          </li>
-          <li>
-            <Link href="/profil" className="hover:underline text-green-700 font-semibold">Profil</Link>
-            <span className="mx-1">/</span>
-          </li>
-          <span className="text-gray-700">Visi Misi</span>
-        </ol>
-      </nav>
-      <div className="bg-green-700 text-white py-4 px-6 rounded-lg shadow-lg mb-6 text-center">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-wide uppercase">
-          VISI & MISI DP3AP2KB SUMATERA BARAT
-        </h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      {/* Green Header Box - Full Width */}
+      <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-8">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h1 className="text-3xl md:text-4xl font-bold tracking-wide">
+              VISI & MISI DP3AP2KB SUMATERA BARAT
+            </h1>
+          </motion.div>
+        </div>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        {/* Konten Utama - ditempatkan pertama untuk tampilan mobile */}
-        <div className="md:order-2 md:col-span-9">
+
+      {/* Breadcrumb Section */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 py-6">
+          <motion.nav
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-1 text-sm text-gray-600"
+            aria-label="Breadcrumb"
+          >
+            <Link href="/" className="hover:underline text-green-700 font-semibold transition-colors">
+              Beranda
+            </Link>
+            <span className="mx-1">/</span>
+            <Link href="/profil" className="hover:underline text-green-700 font-semibold transition-colors">
+              Profil
+            </Link>
+            <span className="mx-1">/</span>
+            <span className="text-gray-700">Visi Misi</span>
+          </motion.nav>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-4 py-6">
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            {/* Konten Utama - ditempatkan pertama untuk tampilan mobile */}
+            <div className="md:order-2 md:col-span-9">
           {/* Visi & Misi dalam satu box */}
           <div className="bg-white rounded-xl shadow-md p-6 md:p-8 mb-8">
             {/* Visi */}
             <div className="mb-8">
-              <h2 className="text-xl font-bold mb-4 text-green-700">Visi</h2>
-              <div className="mb-4 text-gray-700 leading-relaxed">
+              <h2 className="text-xl font-bold mb-4 text-green-700 text-center">Visi</h2>
+              <div className="mb-4 text-gray-700 leading-relaxed text-justify">
                 Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana Provinsi Sumatera Barat selaku penyelenggara dua urusan wajib pemerintahan, yaitu Urusan Pemberdayaan Perempuan dan Perlindungan Anak dan Urusan Keluarga Berencana dalam melaksanakan Tugas Pokok dan Fungsinya mempunyai Visi :
               </div>
               <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded">
@@ -70,18 +90,18 @@ export default function VisiMisi() {
             
             {/* Misi */}
             <div>
-              <h2 className="text-xl font-bold mb-4 text-green-700">Misi</h2>
-              <div className="mb-4 text-gray-700 leading-relaxed">
+              <h2 className="text-xl font-bold mb-4 text-green-700 text-center">Misi</h2>
+              <div className="mb-4 text-gray-700 leading-relaxed text-justify">
                 Dalam rangka mewujudkan Visi tersebut, Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana Provinsi Sumatera Barat menetapkan 2 (dua) misi yang dilaksanakan secara berkesinambungan yaitu :
               </div>
               <ol className="list-decimal pl-6 space-y-3 text-green-800">
                 <li>
-                  <span className="font-semibold">
+                  <span className="font-semibold text-justify block">
                     Meningkatkan tata kehidupan sosial kemasyarakatan berdasarkan falsafah Adat Basandi Syara', Syara' Basandi Kitabullah.
                   </span>
                 </li>
                 <li>
-                  <span className="font-semibold">
+                  <span className="font-semibold text-justify block">
                     Meningkatkan tata kelola Pemerintahan dan Pelayanan Publik yang bersih, akuntabel serta berkualitas.
                   </span>
                 </li>
@@ -117,10 +137,10 @@ export default function VisiMisi() {
               <span className="font-semibold">Pengumuman:</span> Website DP3AP2KB Sumbar dalam pengembangan. Untuk info layanan terbaru, silakan cek menu <Link href="/berita" className="underline font-semibold">Berita</Link> atau <Link href="/layanan" className="underline font-semibold">Informasi Layanan</Link>.
             </div>
           </div>
-        </div>
+            </div>
 
-        {/* Sidebar - ditempatkan kedua untuk tampilan mobile */}
-        <aside className="md:order-1 md:col-span-3 space-y-6 mt-8 md:mt-0">
+            {/* Sidebar - ditempatkan kedua untuk tampilan mobile */}
+            <aside className="md:order-1 md:col-span-3 space-y-6 mt-8 md:mt-0">
           {/* Profil Pejabat */}
           <div className="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center">
             <div className="w-24 h-24 rounded-full overflow-hidden mb-2 border-4 border-green-200">
@@ -151,11 +171,11 @@ export default function VisiMisi() {
               <li><Link href="/download" className="hover:underline">Download Dokumen</Link></li>
             </ul>
           </div>
-        </aside>
-      </div>
-      
-      {/* Modal Preview Gambar */}
-      <AnimatePresence>
+            </aside>
+          </div>
+          
+          {/* Modal Preview Gambar */}
+          <AnimatePresence>
         {modalImg && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -186,6 +206,8 @@ export default function VisiMisi() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.section>
+        </motion.section>
+      </div>
+    </div>
   );
 }

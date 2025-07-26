@@ -47,20 +47,20 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 ${className}`}
+      className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full ${className}`}
     >
       {displayBerita.map((berita: any) => (
         <motion.article
           key={berita.id}
           variants={itemVariants}
-          className="group"
+          className="group h-full"
         >
           <a
             href={`/berita/${berita.slug}`}
-            className="block bg-white rounded-3xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            className="flex flex-col h-full bg-white rounded-3xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           >
           <div className="relative">
-            <div className="w-full h-48 sm:h-52 md:h-56 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden">
+            <div className="w-full h-48 sm:h-52 md:h-56 lg:h-60 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               {berita.featured && (
                 <div className="absolute top-3 left-3 md:top-4 md:left-4 z-10">
@@ -78,29 +78,27 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
             </div>
           </div>
           
-          <div className="p-4 sm:p-6 md:p-8">
-            <div className="flex items-center gap-3 md:gap-4 text-xs sm:text-sm text-gray-500 mb-3 md:mb-4">
-              <span className="flex items-center gap-1.5 md:gap-2">
-                <Calendar size={14} className="md:hidden" />
-                <Calendar size={16} className="hidden md:block" />
+          <div className="flex-1 p-4 sm:p-5 md:p-6 lg:p-7 flex flex-col">
+            <div className="flex items-center gap-2 md:gap-3 text-xs sm:text-sm text-gray-500 mb-3">
+              <span className="flex items-center gap-1.5">
+                <Calendar size={14} />
                 <span className="truncate">{berita.tanggal}</span>
               </span>
-              <span className="flex items-center gap-1.5 md:gap-2">
-                <Eye size={14} className="md:hidden" />
-                <Eye size={16} className="hidden md:block" />
+              <span className="flex items-center gap-1.5">
+                <Eye size={14} />
                 <span className="whitespace-nowrap">{berita.views} views</span>
               </span>
             </div>
             
-            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 md:mb-4 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+            <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-gray-900 mb-3 md:mb-4 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
               {berita.title}
             </h3>
             
-            <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4 md:mb-6">
+            <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4 md:mb-5 flex-grow">
               {berita.excerpt}
             </p>
             
-            <div className="space-y-3 md:space-y-4">
+            <div className="space-y-3 md:space-y-4 mt-auto">
               {/* Tags */}
               <div className="flex gap-1.5 md:gap-2 flex-wrap">
                 {berita.kategori.slice(0, 2).map((kat: string, index: number) => {
@@ -148,12 +146,8 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
               <div className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm group-hover:text-blue-700 transition-colors group/link">
                 Baca Selengkapnya
                 <ArrowRight 
-                  size={14} 
-                  className="sm:hidden group-hover:translate-x-1 transition-transform duration-300" 
-                />
-                <ArrowRight 
                   size={16} 
-                  className="hidden sm:block group-hover:translate-x-1 transition-transform duration-300" 
+                  className="group-hover:translate-x-1 transition-transform duration-300" 
                 />
               </div>
             </div>

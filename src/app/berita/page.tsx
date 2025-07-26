@@ -24,7 +24,7 @@ export default function BeritaPage() {
       <BeritaHero />
 
       {/* Main Content */}
-      <Container className="py-16">
+      <div className="py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export default function BeritaPage() {
           className="space-y-12"
         >
           {/* Search and Filter */}
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SearchFilter
               searchTerm={searchTerm}
               selectedKategori={selectedKategori}
@@ -42,9 +42,10 @@ export default function BeritaPage() {
           </div>
 
           {/* Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {/* News Grid */}
-            <div className="lg:col-span-3">
+          <div className="px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+              {/* News Grid */}
+              <div className="lg:col-span-4">
               {/* Results Summary */}
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-4">
@@ -95,9 +96,10 @@ export default function BeritaPage() {
             <div className="lg:col-span-1">
               <BeritaSidebar />
             </div>
+            </div>
           </div>
         </motion.div>
-      </Container>
+      </div>
     </main>
   );
 }

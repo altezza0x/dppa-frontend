@@ -51,7 +51,7 @@ export default function HubungiKami() {
       icon: Clock,
       title: "Jam Kerja",
       content: "Senin - Jumat: 08:00 - 16:00 WIB",
-      color: "orange"
+      color: "green"
     }
   ];
 
@@ -66,7 +66,7 @@ export default function HubungiKami() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
       <Container className="py-16">
         {/* Hero Section */}
         <motion.div
@@ -77,7 +77,7 @@ export default function HubungiKami() {
         > 
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             Hubungi Kami
-            <span className="block text-blue-600">DP3AP2KB Sumbar</span>
+            <span className="block text-green-600">DP3AP2KB Sumbar</span>
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -101,15 +101,15 @@ export default function HubungiKami() {
                 className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300 text-center"
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 mx-auto ${
-                  info.color === 'blue' ? 'bg-blue-100' :
+                  info.color === 'blue' ? 'bg-green-100' :
                   info.color === 'green' ? 'bg-green-100' :
-                  info.color === 'purple' ? 'bg-purple-100' :
+                  info.color === 'purple' ? 'bg-emerald-100' :
                   'bg-orange-100'
                 }`}>
                   <Icon size={24} className={`${
-                    info.color === 'blue' ? 'text-blue-600' :
+                    info.color === 'blue' ? 'text-green-600' :
                     info.color === 'green' ? 'text-green-600' :
-                    info.color === 'purple' ? 'text-purple-600' :
+                    info.color === 'purple' ? 'text-emerald-600' :
                     'text-orange-600'
                   }`} />
                 </div>
@@ -130,8 +130,8 @@ export default function HubungiKami() {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <MessageSquare size={20} className="text-blue-600" />
+                <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                  <MessageSquare size={20} className="text-green-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900">Kirim Pesan</h2>
               </div>
@@ -153,7 +153,7 @@ export default function HubungiKami() {
                     value={formData.nama}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
                     placeholder="Masukkan nama lengkap"
                   />
                 </div>
@@ -167,7 +167,7 @@ export default function HubungiKami() {
                     name="telepon"
                     value={formData.telepon}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
                     placeholder="Masukkan nomor telepon"
                   />
                 </div>
@@ -184,7 +184,7 @@ export default function HubungiKami() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
                   placeholder="Masukkan alamat email"
                 />
               </div>
@@ -199,7 +199,7 @@ export default function HubungiKami() {
                   value={formData.subjek}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
                 >
                   <option value="">Pilih subjek atau layanan</option>
                   {layananOptions.map((option, index) => (
@@ -219,14 +219,14 @@ export default function HubungiKami() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-none"
                   placeholder="Tuliskan pesan, pertanyaan, atau keluhan Anda di sini..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
               >
                 <Send size={20} />
                 Kirim Pesan
@@ -284,8 +284,8 @@ export default function HubungiKami() {
             {/* Map Section */}
             <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Lokasi Kantor</h3>
-              <div className="w-full h-64 rounded-2xl overflow-hidden border border-gray-200 bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center">
-                <MapPin size={48} className="text-blue-600 mb-4" />
+              <div className="w-full h-64 rounded-2xl overflow-hidden border border-gray-200 bg-gradient-to-br from-green-50 to-emerald-100 flex flex-col items-center justify-center">
+                <MapPin size={48} className="text-green-600 mb-4" />
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">DP3AP2KB Sumbar</h4>
                 <p className="text-gray-600 text-center px-4">
                   Jl. Khatib Sulaiman No. 52<br />
@@ -298,7 +298,7 @@ export default function HubungiKami() {
                   href="https://maps.google.com/?q=Jl.+Khatib+Sulaiman+No.52,+Padang+Utara,+Kota+Padang,+Sumatera+Barat+25173"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <MapPin size={16} />
                   Buka di Google Maps
