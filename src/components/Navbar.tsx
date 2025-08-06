@@ -39,7 +39,6 @@ const navLinks: NavLinkWithDropdown[] = [
 			{ name: "Kegiatan", href: "/galeri/kegiatan" },
 		],
 	},
-	{ name: "Pengumuman", href: "/pengumuman" },
 	{
 		name: "PPID",
 		href: "/ppid",

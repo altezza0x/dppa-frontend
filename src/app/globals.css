@@ -27,6 +27,80 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Custom color classes for dynamic Tailwind */
+.bg-blue-500\/20 { background-color: rgb(59 130 246 / 0.2); }
+.bg-emerald-500\/20 { background-color: rgb(16 185 129 / 0.2); }
+.bg-purple-500\/20 { background-color: rgb(168 85 247 / 0.2); }
+.bg-orange-500\/20 { background-color: rgb(249 115 22 / 0.2); }
+.bg-red-500\/20 { background-color: rgb(239 68 68 / 0.2); }
+.bg-green-500\/20 { background-color: rgb(34 197 94 / 0.2); }
+.bg-pink-500\/20 { background-color: rgb(236 72 153 / 0.2); }
+
+.bg-blue-500\/80 { background-color: rgb(59 130 246 / 0.8); }
+.bg-emerald-500\/80 { background-color: rgb(16 185 129 / 0.8); }
+.bg-purple-500\/80 { background-color: rgb(168 85 247 / 0.8); }
+.bg-orange-500\/80 { background-color: rgb(249 115 22 / 0.8); }
+.bg-red-500\/80 { background-color: rgb(239 68 68 / 0.8); }
+.bg-green-500\/80 { background-color: rgb(34 197 94 / 0.8); }
+.bg-pink-500\/80 { background-color: rgb(236 72 153 / 0.8); }
+
+.border-blue-400\/30 { border-color: rgb(96 165 250 / 0.3); }
+.border-emerald-400\/30 { border-color: rgb(52 211 153 / 0.3); }
+.border-purple-400\/30 { border-color: rgb(196 181 253 / 0.3); }
+.border-orange-400\/30 { border-color: rgb(251 146 60 / 0.3); }
+.border-red-400\/30 { border-color: rgb(248 113 113 / 0.3); }
+.border-green-400\/30 { border-color: rgb(74 222 128 / 0.3); }
+.border-pink-400\/30 { border-color: rgb(244 114 182 / 0.3); }
+
+.border-blue-400\/50 { border-color: rgb(96 165 250 / 0.5); }
+.border-emerald-400\/50 { border-color: rgb(52 211 153 / 0.5); }
+.border-purple-400\/50 { border-color: rgb(196 181 253 / 0.5); }
+.border-orange-400\/50 { border-color: rgb(251 146 60 / 0.5); }
+.border-red-400\/50 { border-color: rgb(248 113 113 / 0.5); }
+.border-green-400\/50 { border-color: rgb(74 222 128 / 0.5); }
+.border-pink-400\/50 { border-color: rgb(244 114 182 / 0.5); }
+
+.text-blue-400 { color: rgb(96 165 250); }
+.text-emerald-400 { color: rgb(52 211 153); }
+.text-purple-400 { color: rgb(196 181 253); }
+.text-orange-400 { color: rgb(251 146 60); }
+.text-red-400 { color: rgb(248 113 113); }
+.text-green-400 { color: rgb(74 222 128); }
+.text-pink-400 { color: rgb(244 114 182); }
+
+.text-blue-600 { color: rgb(37 99 235); }
+.text-emerald-600 { color: rgb(5 150 105); }
+.text-purple-600 { color: rgb(147 51 234); }
+.text-orange-600 { color: rgb(234 88 12); }
+.text-red-600 { color: rgb(220 38 38); }
+.text-green-600 { color: rgb(22 163 74); }
+.text-pink-600 { color: rgb(219 39 119); }
+
+.bg-blue-100 { background-color: rgb(219 234 254); }
+.bg-emerald-100 { background-color: rgb(209 250 229); }
+.bg-purple-100 { background-color: rgb(243 232 255); }
+.bg-orange-100 { background-color: rgb(254 215 170); }
+.bg-red-100 { background-color: rgb(254 226 226); }
+.bg-green-100 { background-color: rgb(220 252 231); }
+.bg-pink-100 { background-color: rgb(252 231 243); }
+
+.text-blue-700 { color: rgb(29 78 216); }
+.text-emerald-700 { color: rgb(4 120 87); }
+.text-purple-700 { color: rgb(126 34 206); }
+.text-orange-700 { color: rgb(194 65 12); }
+.text-red-700 { color: rgb(185 28 28); }
+.text-green-700 { color: rgb(21 128 61); }
+.text-pink-700 { color: rgb(190 24 93); }
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Tombol dan elemen utama */
 .btn-primary {
   background: var(--primary);

@@ -124,7 +124,6 @@ const BERITA_POPULER = [
 
 const QUICK_LINKS = [
   { label: "PPID", icon: FileText, href: "/ppid", color: "bg-blue-50 hover:bg-blue-100 text-blue-700" },
-  { label: "Pengumuman", icon: FileText, href: "/pengumuman", color: "bg-green-50 hover:bg-green-100 text-green-700" },
   { label: "Download", icon: FileText, href: "/download", color: "bg-purple-50 hover:bg-purple-100 text-purple-700" },
   { label: "Statistik", icon: Target, href: "/statistik", color: "bg-orange-50 hover:bg-orange-100 text-orange-700" }
 ] as const;
@@ -168,11 +167,11 @@ const BreadcrumbNav = memo(() => (
     {...fadeInUp}
     className="flex items-center gap-1 text-sm text-gray-600"
   >
-    <Link href="/" className="hover:underline text-green-700 font-semibold transition-colors">
+    <Link href="/" className="hover:underline text-emerald-700 font-semibold transition-colors">
       Beranda
     </Link>
     <ChevronRight size={16} className="text-gray-400" />
-    <Link href="/profil" className="hover:underline text-green-700 font-semibold transition-colors">
+    <Link href="/profil" className="hover:underline text-emerald-700 font-semibold transition-colors">
       Profil
     </Link>
     <ChevronRight size={16} className="text-gray-400" />
@@ -196,9 +195,9 @@ const TugasPokokSection = memo(() => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-xl"
+        className="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-xl"
       >
-        <p className="text-green-800 leading-relaxed italic">
+        <p className="text-emerald-800 leading-relaxed italic">
           "{TUGAS_POKOK.description}"
         </p>
       </motion.div>
@@ -219,13 +218,13 @@ const TugasPokokSection = memo(() => (
             <motion.div 
               key={index}
               variants={staggerItem}
-              className="p-4 border border-gray-200 rounded-xl hover:border-green-200 hover:bg-green-50/30 transition-all duration-300 group"
+              className="p-4 border border-gray-200 rounded-xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-300 group"
             >
               <div className="flex items-start gap-3 text-gray-700">
-                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-green-600 text-xs font-bold">{index + 1}</span>
+                <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-emerald-600 text-xs font-bold">{index + 1}</span>
                 </div>
-                <span className="group-hover:text-green-700 transition-colors">{hukum}</span>
+                <span className="group-hover:text-emerald-700 transition-colors">{hukum}</span>
               </div>
             </motion.div>
           ))}
@@ -257,10 +256,10 @@ const FungsiUtamaSection = memo(() => (
           key={fungsi.id}
           variants={staggerItem}
           whileHover={{ scale: 1.01 }}
-          className="p-6 border border-gray-200 rounded-xl hover:border-green-200 hover:bg-green-50/30 transition-all duration-300 group cursor-pointer"
+          className="p-6 border border-gray-200 rounded-xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-300 group cursor-pointer"
         >
           <div className="w-full">
-            <h3 className="font-semibold text-gray-900 mb-3 group-hover:text-green-700 transition-colors">
+            <h3 className="font-semibold text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors">
               {fungsi.title}
             </h3>
             <p className="text-gray-600 leading-relaxed">{fungsi.description}</p>
@@ -294,7 +293,7 @@ const PejabatCard = memo(({ pejabat, index }: { pejabat: typeof PEJABAT[number],
     </div>
     <h4 className="font-semibold text-gray-900 text-sm mb-1">{pejabat.nama}</h4>
     <p className="text-xs text-gray-600 mb-2">{pejabat.jabatan}</p>
-    <span className="inline-block bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-full">
+    <span className="inline-block bg-emerald-100 text-emerald-700 text-xs font-medium px-3 py-1 rounded-full">
       {pejabat.badge}
     </span>
   </motion.div>
@@ -334,11 +333,11 @@ const BeritaCard = memo(({ berita, index }: { berita: typeof BERITA_POPULER[numb
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+              <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">
                 {berita.kategori}
               </span>
             </div>
-            <h4 className="text-sm font-medium text-gray-900 group-hover:text-green-600 line-clamp-2 transition-colors leading-tight mb-1">
+            <h4 className="text-sm font-medium text-gray-900 group-hover:text-emerald-600 line-clamp-2 transition-colors leading-tight mb-1">
               {berita.title}
             </h4>
             <p className="text-xs text-gray-500">{formattedDate}</p>
@@ -388,7 +387,7 @@ ContactItem.displayName = 'ContactItem';
 const HeaderSection = memo(() => (
   <>
     {/* Green Header Box */}
-    <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-8">
+    <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-8">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -15 }}
@@ -469,7 +468,7 @@ const Sidebar = memo(() => (
       </div>
       <Link 
         href="/berita" 
-        className="block text-center text-green-600 text-sm font-medium hover:text-green-700 transition-colors mt-4 pt-3 border-t border-gray-100"
+        className="block text-center text-emerald-600 text-sm font-medium hover:text-emerald-700 transition-colors mt-4 pt-3 border-t border-gray-100"
       >
         Lihat Semua Berita →
       </Link>
@@ -497,7 +496,7 @@ const Sidebar = memo(() => (
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.3, duration: 0.5 }}
-      className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-6 text-white shadow-lg"
+      className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-white shadow-lg"
     >
       <h3 className="font-bold mb-4">Hubungi Kami</h3>
       <div className="space-y-3">
@@ -519,7 +518,7 @@ Sidebar.displayName = 'Sidebar';
 
 export default function TugasFungsi() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-emerald-50">
       <HeaderSection />
 
       {/* Main Content */}
