@@ -10,6 +10,7 @@ interface NavLinkItem {
 	name: string;
 	href: string;
 	icon?: string;
+	external?: boolean;
 }
 
 interface NavLinkWithDropdown extends NavLinkItem {
@@ -49,7 +50,7 @@ const navLinks: NavLinkWithDropdown[] = [
 			{ name: "Informasi Setiap Saat", href: "/ppid/informasi-setiap-saat" },
 			{ name: "Informasi Secara Berkala", href: "/ppid/informasi-berkala" },
 			{ name: "Informasi Serta Merta", href: "/ppid/informasi-serta-merta" },
-			{ name: "Permohonan Informasi", href: "/ppid/permohonan-informasi" },
+			{ name: "Permohonan Informasi", href: "https://docs.google.com/forms/d/e/1FAIpQLSdAWdBNKh12_SUqOU32pqbMZbHJwpkZdGSDxQYGBLKKL5wnNg/viewform", external: true },
 		],
 	},
 	{ name: "Agenda", href: "/agenda" },
@@ -58,9 +59,9 @@ const navLinks: NavLinkWithDropdown[] = [
 		href: "/layanan",
 		dropdown: [
 			{ name: "Standar Pelayanan Publik", href: "/layanan/standar-pelayanan" },
-			{ name: "Maklumat Layanan", href: "/layanan/maklumat" },
-			{ name: "Pengelolaan Pengaduan", href: "/layanan/pengaduan" },
-			{ name: "Survey Kepuasan Masyarakat", href: "/layanan/survey" },
+			{ name: "Maklumat Layanan", href: "/layanan/maklumat-layanan" },
+			{ name: "Pengelolaan Pengaduan", href: "/layanan/pengelolaan-pengaduan" },
+			{ name: "Survey Kepuasan Masyarakat", href: "/layanan/survey-kepuasan" },
 		],
 	},
 	{
@@ -261,7 +262,7 @@ interface DropdownItemProps {
 }
 
 const DropdownItem: React.FC<DropdownItemProps> = ({ item }) => {
-	if (item.name === "Lapor") {
+	if (item.name === "Lapor" || item.external) {
 		return (
 			<a
 				href={item.href}
@@ -476,7 +477,7 @@ interface MobileDropdownItemProps {
 }
 
 const MobileDropdownItem: React.FC<MobileDropdownItemProps> = ({ item, onClose }) => {
-	if (item.name === "Lapor") {
+	if (item.name === "Lapor" || item.external) {
 		return (
 			<a
 				href={item.href}
@@ -606,15 +607,21 @@ export default function Navbar() {
 				<div className="max-w-7xl mx-auto px-4 h-[68px] flex flex-row items-center">
 					{/* Logo + Judul */}
 					<Link href="/" className="flex flex-row items-center min-w-[180px] max-w-[260px]">
-						<Image
-							src="/images/logo.png"
-							alt="Logo"
-							width={40}
-							height={40}
-							quality={100}
-							priority
-							style={{ objectFit: 'contain', display: 'block' }}
-						/>
+						<div className="relative w-10 h-10 flex-shrink-0">
+							<Image
+								src="/images/logo.png"
+								alt="Logo"
+								width={128}
+								height={128}
+								quality={100}
+								priority
+								className="object-contain"
+								style={{ 
+									imageRendering: 'crisp-edges',
+									filter: 'contrast(1.1) saturate(1.05)',
+								}}
+							/>
+						</div>
 						<div className="flex flex-col justify-center text-center leading-tight w-36 -ml-3">
 							<span className="text-green-700 text-lg tracking-wide block w-full text-center font-bold leading-none">
 								DP3AP2KB

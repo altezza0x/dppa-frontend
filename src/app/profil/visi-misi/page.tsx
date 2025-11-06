@@ -11,9 +11,9 @@ const galleryImages = [
 ];
 
 const pejabat = {
-  nama: "Nama Pejabat",
-  jabatan: "Kepala Dinas",
-  foto: "/images/kepala-dinas.jpg",
+  nama: "Dra. Hj. Gemala Ranti, M.Si",
+  jabatan: "Kepala Dinas DP3AP2KB Provinsi Sumatera Barat",
+  foto: "/images/kepala-dinas.jpeg",
 };
 
 export default function VisiMisi() {

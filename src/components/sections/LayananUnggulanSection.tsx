@@ -77,8 +77,8 @@ const LayananUnggulanSection: React.FC = () => {
             <span className="block text-emerald-600 mt-1">Masyarakat Sumbar</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Kami menyediakan berbagai layanan berkualitas untuk pemberdayaan perempuan, 
-            perlindungan anak, dan program keluarga berencana yang inovatif.
+            Kami Menyediakan Berbagai Layanan Berkualitas untuk Pemberdayaan Perempuan, 
+            Perlindungan Anak, dan Program Keluarga Berencana yang Inovatif.
           </p>
         </motion.div>
 

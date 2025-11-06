@@ -174,7 +174,7 @@ export default function Footer() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative z-10 text-center text-emerald-100 text-xs pt-5"
         >
-          &copy; {new Date().getFullYear()} DP3AP2KB Sumatera Barat. All rights reserved. <span className="font-semibold">Support by Ferdi Saputra</span>
+          &copy; {new Date().getFullYear()} DP3AP2KB Sumatera Barat. All rights reserved.
         </motion.div>
       </div>
     </footer>
