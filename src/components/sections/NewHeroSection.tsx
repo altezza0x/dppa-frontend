@@ -50,13 +50,13 @@ const HeroSection: React.FC = () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-2 w-full">
               <Link 
-                href="/layanan"
+                href="/layanan/standar-pelayanan"
                 className="flex-1 w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-sm"
               >
                 <span>Layanan Publik</span>
               </Link>
               <Link 
-                href="/profil"
+                href="/profil/sejarah"
                 className="flex-1 w-full sm:w-auto border-2 border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 backdrop-blur-sm text-sm"
               >
                 <Users size={15} />
@@ -89,7 +89,7 @@ const HeroSection: React.FC = () => {
               {/* Action Button */}
               <div>
                 <Link 
-                  href="/layanan"
+                  href="/layanan/standar-pelayanan"
                   className="w-full bg-emerald-500/90 hover:bg-emerald-500 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"
                 >
                   <span>Lihat Semua Layanan</span>

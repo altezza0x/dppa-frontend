@@ -45,7 +45,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
           animate={{
             scale: isSearchFocused ? 1.01 : 1,
             boxShadow: isSearchFocused 
-              ? "0 20px 40px -10px rgba(59, 130, 246, 0.2)" 
+              ? "0 20px 40px -10px rgba(16, 185, 129, 0.2)" 
               : "0 8px 25px -5px rgba(0, 0, 0, 0.1)"
           }}
           transition={{ duration: 0.3 }}
@@ -56,7 +56,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
               <Search 
                 size={24} 
                 className={`transition-colors duration-300 ${
-                  isSearchFocused ? 'text-blue-600' : 'text-gray-400'
+                  isSearchFocused ? 'text-emerald-600' : 'text-gray-400'
                 }`} 
               />
             </div>
@@ -93,7 +93,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
             onClick={() => setShowMobileFilters(!showMobileFilters)}
             className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all"
           >
-            <Filter size={20} className="text-blue-600" />
+            <Filter size={20} className="text-emerald-600" />
             <span className="font-medium text-gray-700">
               {showMobileFilters ? 'Tutup Filter' : 'Tampilkan Filter'}
             </span>
@@ -123,8 +123,8 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                   className={`
                     flex items-center gap-3 px-6 py-3 rounded-xl font-medium transition-all duration-300 min-w-fit
                     ${isActive
-                      ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl transform scale-105"
-                      : "bg-white text-gray-700 border border-gray-200 hover:border-blue-300 hover:shadow-lg hover:bg-blue-50"
+                      ? "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-xl transform scale-105"
+                      : "bg-white text-gray-700 border border-gray-200 hover:border-emerald-300 hover:shadow-lg hover:bg-emerald-50"
                     }
                   `}
                 >
@@ -152,11 +152,11 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
         >
           <p className="text-gray-600">
             Menampilkan hasil pencarian untuk{" "}
-            <span className="font-semibold text-blue-600">"{searchTerm}"</span>
+            <span className="font-semibold text-emerald-600">"{searchTerm}"</span>
             {selectedKategori !== "all" && (
               <>
                 {" "}dalam kategori{" "}
-                <span className="font-semibold text-blue-600">
+                <span className="font-semibold text-emerald-600">
                   {kategoriList.find(k => k.key === selectedKategori)?.label}
                 </span>
               </>

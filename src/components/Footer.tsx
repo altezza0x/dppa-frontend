@@ -3,8 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
-  Mail, 
-  Phone, 
+  Mail,
   MapPin, 
   Globe2, 
   ArrowUpRight, 
@@ -15,7 +14,8 @@ import {
   Facebook,
   Instagram,
   Twitter,
-  Youtube
+  Youtube,
+  Phone
 } from "lucide-react";
 
 type QuickLink = {
@@ -48,25 +48,10 @@ const socialLinks = [
   { name: "Youtube", href: "https://youtube.com/", icon: Youtube },
 ];
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className="relative bg-emerald-800 text-white pt-10 pb-4 px-4 md:px-0 mt-12 overflow-hidden">
-      {/* Animasi background blob */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.12, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.2 }}
-        className="absolute -top-32 -left-32 w-96 h-96 bg-emerald-400 rounded-full blur-3xl z-0"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.10, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        className="absolute bottom-0 right-0 w-80 h-80 bg-teal-400 rounded-full blur-3xl z-0"
-      />
-      
-      {/* Card-like container similar to hero section */}
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <footer className="relative bg-emerald-800 text-white pt-10 pb-4 px-4 md:px-0 mt-12">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,17 +59,16 @@ export default function Footer() {
           transition={{ duration: 0.7 }}
           className="px-2"
         >
-          <div className="bg-white/5 p-5 rounded-xl backdrop-blur-sm border border-emerald-300/20 shadow-lg shadow-emerald-900/20 w-full">
-            <div className="flex flex-col md:flex-row gap-8">
+          <div className="flex flex-col md:flex-row gap-8">
               {/* Info Dinas & Media Sosial */}
               <div className="flex-1 flex flex-col gap-6">
                 {/* Info Dinas & Kontak */}
                 <div>
                   <h2 className="text-lg md:text-xl font-bold mb-2 text-white tracking-wide">DP3AP2KB Sumatera Barat</h2>
-                  <p className="text-sm text-white mb-4 leading-relaxed">
+                  <p className="text-sm text-white/90 mb-4 leading-relaxed">
                     Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana Provinsi Sumatera Barat
                   </p>
-                  <div className="flex flex-col gap-3 text-white text-sm">
+                  <div className="flex flex-col gap-3 text-white/90 text-sm">
                     <span className="flex items-center gap-2"><Phone size={16} className="text-emerald-300"/> 0751-123456</span>
                     <span className="flex items-center gap-2"><Mail size={16} className="text-emerald-300"/> dp3ap2kb@sumbarprov.go.id</span>
                     <span className="flex items-center gap-2"><MapPin size={16} className="text-emerald-300"/> Jl. Khatib Sulaiman No.1, Padang</span>
@@ -120,19 +104,19 @@ export default function Footer() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-emerald-700/30 transition-colors text-white hover:text-emerald-100 text-sm group border border-emerald-300/10 hover:border-emerald-300/30"
+                          className="flex items-center text-white/90 hover:text-white text-sm group hover:bg-emerald-700/30 rounded w-fit px-2 py-1"
                         >
                           <link.icon size={16} className="text-emerald-300 group-hover:text-white" />
-                          <span>{link.name}</span>
-                          <ArrowUpRight size={14} className="ml-auto opacity-60 group-hover:opacity-100" />
+                          <span className="mx-2">{link.name}</span>
+                          <ArrowUpRight size={14} className="opacity-60 group-hover:opacity-100" />
                         </a>
                       ) : (
                         <Link 
                           href={link.href}
-                          className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-emerald-700/30 transition-colors text-white hover:text-emerald-100 text-sm group border border-emerald-300/10 hover:border-emerald-300/30"
+                          className="flex items-center text-white/90 hover:text-white text-sm group hover:bg-emerald-700/30 rounded w-fit px-2 py-1"
                         >
                           <link.icon size={16} className="text-emerald-300 group-hover:text-white" />
-                          <span>{link.name}</span>
+                          <span className="mx-2">{link.name}</span>
                         </Link>
                       )}
                     </li>
@@ -149,34 +133,35 @@ export default function Footer() {
                         href={layanan.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-emerald-700/30 transition-colors text-white hover:text-emerald-100 text-sm group border border-emerald-300/10 hover:border-emerald-300/30"
+                        className="flex items-center text-white/90 hover:text-white text-sm group hover:bg-emerald-700/30 rounded w-fit px-2 py-1"
                       >
                         <layanan.icon size={16} className="text-emerald-300 group-hover:text-white" />
-                        <span>{layanan.name}</span>
-                        <ArrowUpRight size={14} className="ml-auto opacity-60 group-hover:opacity-100" />
+                        <span className="mx-2">{layanan.name}</span>
+                        <ArrowUpRight size={14} className="opacity-60 group-hover:opacity-100" />
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
       </div>
       
       {/* Copyright */}
-      <div className="relative z-10 max-w-7xl mx-auto mt-12">
+      <div className="max-w-7xl mx-auto mt-12">
         <div className="h-px bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent"></div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative z-10 text-center text-emerald-100 text-xs pt-5"
+          className="text-center text-emerald-100/90 text-xs pt-5"
         >
           &copy; {new Date().getFullYear()} DP3AP2KB Sumatera Barat. All rights reserved.
         </motion.div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

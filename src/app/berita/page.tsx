@@ -10,16 +10,17 @@ import Container from "@/components/ui/Container";
 import { useBeritaFilter } from "../../hooks/useBerita";
 
 export default function BeritaPage() {
-  const {
-    searchTerm,
-    selectedKategori,
+  const { 
+    searchTerm, 
+    selectedKategori, 
     filteredBerita,
+    currentPage,
+    totalPages,
     handleSearchChange,
-    handleKategoriChange
-  } = useBeritaFilter();
-
-  return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    handleKategoriChange,
+    handlePageChange
+  } = useBeritaFilter();  return (
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-emerald-50">
       {/* Hero Section */}
       <BeritaHero />
 
@@ -63,12 +64,12 @@ export default function BeritaPage() {
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span>Filter aktif:</span>
                     {searchTerm && (
-                      <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-md">
+                      <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md">
                         "{searchTerm}"
                       </span>
                     )}
                     {selectedKategori !== "all" && (
-                      <span className="px-2 py-1 bg-green-100 text-green-700 rounded-md">
+                      <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md">
                         {selectedKategori}
                       </span>
                     )}
@@ -77,7 +78,7 @@ export default function BeritaPage() {
                         handleSearchChange("");
                         handleKategoriChange("all");
                       }}
-                      className="ml-2 text-blue-600 hover:text-blue-700 underline"
+                      className="ml-2 text-emerald-600 hover:text-emerald-700 underline"
                     >
                       Reset filter
                     </button>
@@ -85,10 +86,13 @@ export default function BeritaPage() {
                 )}
               </div>
 
-              <BeritaGrid 
+              <BeritaGrid
                 berita={filteredBerita}
                 searchTerm={searchTerm}
                 selectedKategori={selectedKategori}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
               />
             </div>
 

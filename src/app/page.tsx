@@ -4,7 +4,6 @@ import NewHeroSection from '@/components/sections/NewHeroSection';
 import LayananUnggulanSection from '@/components/sections/LayananUnggulanSection';
 import AgendaBeritaSection from '@/components/sections/AgendaBeritaSection';
 import StatistikInfoSection from '@/components/sections/StatistikInfoSection';
-import PimpinanDaerahSection from '@/components/sections/PimpinanDaerahSection';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 
 export default function HomePage() {
@@ -14,7 +13,6 @@ export default function HomePage() {
       <LayananUnggulanSection />
       <AgendaBeritaSection />
       <StatistikInfoSection />
-      <PimpinanDaerahSection />
       <ScrollToTop />
     </main>
   );

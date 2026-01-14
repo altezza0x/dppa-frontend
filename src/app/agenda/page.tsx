@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Calendar, 
@@ -17,6 +17,7 @@ import {
   CheckCircle,
   AlertCircle
 } from 'lucide-react';
+import Pagination from '@/components/ui/Pagination';
 import Link from 'next/link';
 import { 
   AGENDA_EVENTS, 
@@ -25,40 +26,32 @@ import {
   getCategoryColor,
   getAgendaByCategory 
 } from '@/data/agenda';
+import { useAgendaFilter } from '@/hooks/useAgenda';
 
 export default function Agenda() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('semua');
-  const [selectedStatus, setSelectedStatus] = useState<'semua' | AgendaItem['status']>('semua');
   const [showFilters, setShowFilters] = useState(false);
+  const {
+    searchTerm,
+    selectedCategory,
+    selectedStatus,
+    currentPage,
+    totalPages,
+    filteredAgenda,
+    totalItems,
+    handleSearchChange,
+    handleCategoryChange,
+    handleStatusChange,
+    handlePageChange
+  } = useAgendaFilter();
 
-  // Filter dan search logic
-  const filteredAgenda = useMemo(() => {
-    let filtered = getAgendaByCategory(selectedCategory);
-    
-    if (selectedStatus !== 'semua') {
-      filtered = filtered.filter(agenda => agenda.status === selectedStatus);
-    }
-    
-    if (searchTerm) {
-      filtered = filtered.filter(agenda => 
-        agenda.judul.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        agenda.deskripsi.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        agenda.lokasi.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-    
-    return filtered.sort((a, b) => new Date(a.tanggal).getTime() - new Date(b.tanggal).getTime());
-  }, [searchTerm, selectedCategory, selectedStatus]);
+  // Get category counts
+  const filtered = getAgendaByCategory(selectedCategory);
 
   // Category counts
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    AGENDA_CATEGORIES.forEach(category => {
-      counts[category.id] = getAgendaByCategory(category.id).length;
-    });
-    return counts;
-  }, []);
+  const categoryCounts: Record<string, number> = {};
+  AGENDA_CATEGORIES.forEach(category => {
+    categoryCounts[category.id] = getAgendaByCategory(category.id).length;
+  });
 
   const formatTanggal = (tanggal: string) => {
     const date = new Date(tanggal);
@@ -135,7 +128,7 @@ export default function Agenda() {
                 type="text"
                 placeholder="Cari agenda..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
               />
             </div>
@@ -163,7 +156,7 @@ export default function Agenda() {
                   {AGENDA_CATEGORIES.map(category => (
                     <button
                       key={category.id}
-                      onClick={() => setSelectedCategory(category.id)}
+                      onClick={() => handleCategoryChange(category.id)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                         selectedCategory === category.id
                           ? 'bg-emerald-500 text-white'
@@ -182,7 +175,7 @@ export default function Agenda() {
                 <span className="text-sm font-medium text-gray-700">Status:</span>
                 <select
                   value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value as any)}
+                  onChange={(e) => handleStatusChange(e.target.value as any)}
                   className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 >
                   <option value="semua">Semua</option>
@@ -213,7 +206,7 @@ export default function Agenda() {
                       {AGENDA_CATEGORIES.map(category => (
                         <button
                           key={category.id}
-                          onClick={() => setSelectedCategory(category.id)}
+                          onClick={() => handleCategoryChange(category.id)}
                           className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors text-center ${
                             selectedCategory === category.id
                               ? 'bg-emerald-500 text-white'
@@ -232,7 +225,7 @@ export default function Agenda() {
                     <span className="block text-sm font-medium text-gray-700 mb-2">Status:</span>
                     <select
                       value={selectedStatus}
-                      onChange={(e) => setSelectedStatus(e.target.value as any)}
+                      onChange={(e) => handleStatusChange(e.target.value as any)}
                       className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                     >
                       <option value="semua">Semua</option>
@@ -422,6 +415,16 @@ export default function Agenda() {
           ))}
         </motion.div>
 
+        {/* Pagination */}
+        {filteredAgenda.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            className="mt-8"
+          />
+        )}
+
         {/* Empty State */}
         <AnimatePresence>
           {filteredAgenda.length === 0 && (
@@ -443,9 +446,9 @@ export default function Agenda() {
             </p>
             <button
               onClick={() => {
-                setSearchTerm('');
-                setSelectedCategory('semua');
-                setSelectedStatus('semua');
+                handleSearchChange('');
+                handleCategoryChange('semua');
+                handleStatusChange('semua');
               }}
               className="inline-flex items-center px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-medium transition-colors"
             >

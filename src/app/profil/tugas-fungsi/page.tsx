@@ -128,20 +128,7 @@ const QUICK_LINKS = [
   { label: "Statistik", icon: Target, href: "/statistik", color: "bg-orange-50 hover:bg-orange-100 text-orange-700" }
 ] as const;
 
-const PEJABAT = [
-  {
-    nama: "Mahyeldi Ansharullah",
-    jabatan: "Gubernur Sumatera Barat",
-    image: "/images/gubernur.jpg",
-    badge: "Gubernur",
-  },
-  {
-    nama: "Vasko Ruseimy",
-    jabatan: "Wakil Gubernur Sumatera Barat",
-    image: "/images/wagub.jpg",
-    badge: "Wakil Gubernur",
-  },
-] as const;
+
 
 const CONTACT_INFO = [
   {
@@ -272,34 +259,7 @@ const FungsiUtamaSection = memo(() => (
 
 FungsiUtamaSection.displayName = 'FungsiUtamaSection';
 
-const PejabatCard = memo(({ pejabat, index }: { pejabat: typeof PEJABAT[number], index: number }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 15 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.1, duration: 0.5 }}
-    whileHover={{ y: -2 }}
-    className="text-center cursor-pointer"
-  >
-    <div className="w-20 h-24 relative mx-auto mb-3 rounded-xl overflow-hidden shadow-md transition-shadow duration-300 hover:shadow-lg">
-      <Image 
-        src={pejabat.image} 
-        alt={`${pejabat.nama} - ${pejabat.jabatan}`} 
-        fill 
-        className="object-cover object-top transition-transform duration-300 hover:scale-105" 
-        sizes="80px"
-        priority={index === 0}
-      />
-    </div>
-    <h4 className="font-semibold text-gray-900 text-sm mb-1">{pejabat.nama}</h4>
-    <p className="text-xs text-gray-600 mb-2">{pejabat.jabatan}</p>
-    <span className="inline-block bg-emerald-100 text-emerald-700 text-xs font-medium px-3 py-1 rounded-full">
-      {pejabat.badge}
-    </span>
-  </motion.div>
-));
 
-PejabatCard.displayName = 'PejabatCard';
 
 const BeritaCard = memo(({ berita, index }: { berita: typeof BERITA_POPULER[number], index: number }) => {
   const formattedDate = useMemo(() => 
@@ -434,24 +394,6 @@ MainContent.displayName = 'MainContent';
 
 const Sidebar = memo(() => (
   <div className="space-y-6">
-    {/* Pimpinan */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-    >
-      <h3 className="font-bold text-gray-900 mb-6 text-center">
-        Pimpinan Daerah
-      </h3>
-      <div className="space-y-6">
-        {PEJABAT.map((p, index) => (
-          <PejabatCard key={p.nama} pejabat={p} index={index} />
-        ))}
-      </div>
-    </motion.div>
-
     {/* Berita Terkait */}
     <motion.div
       initial={{ opacity: 0, y: 20 }}

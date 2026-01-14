@@ -31,13 +31,26 @@ export const useScrollAnimation = (options = {}) => {
 export const useBeritaFilter = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedKategori, setSelectedKategori] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
+    setCurrentPage(1); // Reset to first page when searching
   };
 
   const handleKategoriChange = (kategori: string) => {
     setSelectedKategori(kategori);
+    setCurrentPage(1); // Reset to first page when changing category
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to the top of the page smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   // Import berita data inside the hook to avoid import issues
@@ -160,12 +173,22 @@ export const useBeritaFilter = () => {
     return matchesSearch && matchesKategori;
   });
 
+  // Calculate pagination
+  const totalItems = filteredBerita.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedBerita = filteredBerita.slice(startIndex, startIndex + itemsPerPage);
+
   return {
     searchTerm,
     selectedKategori,
-    filteredBerita,
+    currentPage,
+    itemsPerPage,
+    totalPages,
+    filteredBerita: paginatedBerita,
     handleSearchChange,
-    handleKategoriChange
+    handleKategoriChange,
+    handlePageChange
   };
 };
 

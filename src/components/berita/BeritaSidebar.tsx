@@ -46,7 +46,7 @@ const BeritaSidebar: React.FC<BeritaSidebarProps> = ({ className = "" }) => {
               <div className="flex gap-3">
                 <div className="w-14 h-10 bg-gray-100 rounded-lg flex-shrink-0 group-hover:bg-gray-200 transition-colors duration-200"></div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium text-gray-800 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-sm font-medium text-gray-800 line-clamp-2 group-hover:text-emerald-600 transition-colors">
                     Judul berita terkait yang menarik untuk dibaca
                   </h4>
                   <p className="text-xs text-gray-500 mt-1">
@@ -76,13 +76,13 @@ const BeritaSidebar: React.FC<BeritaSidebarProps> = ({ className = "" }) => {
               className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group cursor-pointer"
             >
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-blue-50 rounded-lg flex flex-col items-center justify-center">
-                  <div className="text-sm font-semibold text-blue-600">{agenda.tanggal}</div>
-                  <div className="text-xs text-blue-500">{agenda.bulan}</div>
+                <div className="w-12 h-12 bg-emerald-50 rounded-lg flex flex-col items-center justify-center">
+                  <div className="text-sm font-semibold text-emerald-600">{agenda.tanggal}</div>
+                  <div className="text-xs text-emerald-500">{agenda.bulan}</div>
                 </div>
               </div>
               <div className="flex-1 min-w-0">
-                <h4 className="font-medium text-gray-900 text-sm mb-2 group-hover:text-blue-600 transition-colors">
+                <h4 className="font-medium text-gray-900 text-sm mb-2 group-hover:text-emerald-600 transition-colors">
                   {agenda.judul}
                 </h4>
                 <div className="space-y-1">
@@ -120,11 +120,11 @@ const BeritaSidebar: React.FC<BeritaSidebarProps> = ({ className = "" }) => {
                 href={layanan.link}
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
               >
-                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-blue-50 transition-colors">
-                  <IconComponent size={18} className="text-gray-600 group-hover:text-blue-600" />
+                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
+                  <IconComponent size={18} className="text-gray-600 group-hover:text-emerald-600" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-emerald-600 transition-colors">
                     {layanan.nama}
                   </h4>
                   <p className="text-xs text-gray-500 line-clamp-1">{layanan.deskripsi}</p>
@@ -154,11 +154,11 @@ const BeritaSidebar: React.FC<BeritaSidebarProps> = ({ className = "" }) => {
                 href={info.link}
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
               >
-                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-blue-50 transition-colors">
-                  <IconComponent size={18} className="text-gray-600 group-hover:text-blue-600" />
+                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
+                  <IconComponent size={18} className="text-gray-600 group-hover:text-emerald-600" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-emerald-600 transition-colors">
                     {info.nama}
                   </h4>
                   <p className="text-xs text-gray-500 line-clamp-1">{info.deskripsi}</p>

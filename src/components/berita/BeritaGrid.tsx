@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Pagination from "@/components/ui/Pagination";
 import { motion } from "framer-motion";
 import { Eye, Calendar, ArrowRight } from "lucide-react";
 
@@ -9,13 +10,19 @@ interface BeritaGridProps {
   searchTerm?: string;
   selectedKategori?: string;
   className?: string;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }
 
 const BeritaGrid: React.FC<BeritaGridProps> = ({ 
   berita,
   searchTerm = "", 
   selectedKategori = "all", 
-  className = "" 
+  className = "",
+  currentPage,
+  totalPages,
+  onPageChange
 }) => {
   // Use the provided berita array
   const displayBerita = berita;
@@ -43,6 +50,7 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
   };
 
   return (
+    <>
     <motion.div
       initial="hidden"
       animate="visible"
@@ -57,22 +65,22 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
         >
           <a
             href={`/berita/${berita.slug}`}
-            className="flex flex-col h-full bg-white rounded-3xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            className="flex flex-col h-full bg-white rounded-3xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-lg hover:border-emerald-200 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           >
           <div className="relative">
-            <div className="w-full h-48 sm:h-52 md:h-56 lg:h-60 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden">
+            <div className="w-full h-48 sm:h-52 md:h-56 lg:h-60 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               {berita.featured && (
                 <div className="absolute top-3 left-3 md:top-4 md:left-4 z-10">
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold rounded-full shadow-lg">
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-xs font-semibold rounded-full shadow-lg">
                     Unggulan
                   </span>
                 </div>
               )}
               <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <ArrowRight size={14} className="md:hidden text-blue-600" />
-                  <ArrowRight size={16} className="hidden md:block text-blue-600" />
+                  <ArrowRight size={14} className="md:hidden text-emerald-600" />
+                  <ArrowRight size={16} className="hidden md:block text-emerald-600" />
                 </div>
               </div>
             </div>
@@ -90,7 +98,7 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
               </span>
             </div>
             
-            <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-gray-900 mb-3 md:mb-4 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+            <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-gray-900 mb-3 md:mb-4 line-clamp-2 group-hover:text-emerald-600 transition-colors duration-300 leading-tight">
               {berita.title}
             </h3>
             
@@ -107,9 +115,9 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
                     switch (category) {
                       case 'berita-utama':
                       case 'utama':
-                        return "px-2.5 py-1 md:px-3 md:py-1.5 bg-blue-100 text-blue-700 text-xs font-medium rounded-lg border border-blue-200";
+                        return "px-2.5 py-1 md:px-3 md:py-1.5 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-lg border border-emerald-200";
                       case 'program':
-                        return "px-2.5 py-1 md:px-3 md:py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-lg border border-green-200";
+                        return "px-2.5 py-1 md:px-3 md:py-1.5 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-lg border border-emerald-200";
                       case 'kegiatan':
                         return "px-2.5 py-1 md:px-3 md:py-1.5 bg-purple-100 text-purple-700 text-xs font-medium rounded-lg border border-purple-200";
                       case 'pengumuman':
@@ -143,7 +151,7 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
               </div>
               
               {/* Read More Button */}
-              <div className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm group-hover:text-blue-700 transition-colors group/link">
+              <div className="inline-flex items-center gap-2 text-emerald-600 font-semibold text-sm group-hover:text-emerald-700 transition-colors group/link">
                 Baca Selengkapnya
                 <ArrowRight 
                   size={16} 
@@ -169,13 +177,22 @@ const BeritaGrid: React.FC<BeritaGridProps> = ({
             <p className="text-gray-500 text-sm leading-relaxed mb-6">
               Coba ubah kata kunci pencarian atau pilih kategori lain untuk menemukan berita yang Anda cari
             </p>
-            <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+            <button className="px-6 py-3 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors">
               Reset Filter
             </button>
           </div>
         </motion.div>
       )}
     </motion.div>
+    {displayBerita.length > 0 && (
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+        className="mt-8"
+      />
+    )}
+    </>
   );
 };
 

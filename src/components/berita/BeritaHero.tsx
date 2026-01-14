@@ -19,7 +19,7 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
+        className="bg-gradient-to-br from-emerald-50 via-white to-emerald-50 rounded-3xl shadow-xl border border-emerald-100 overflow-hidden"
       >
         <div className="grid lg:grid-cols-2 gap-6 items-center p-6 lg:p-8">
           <div className="space-y-4">
@@ -28,7 +28,7 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-full mb-3">
+              <span className="inline-block px-4 py-2 bg-emerald-600 text-white text-sm font-medium rounded-full mb-3">
                 Berita Utama
               </span>
               <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 leading-tight">
@@ -70,7 +70,7 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
               {mainNews.kategori.map((kategori, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-md font-medium"
+                  className="px-3 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-md font-medium"
                 >
                   {kategori}
                 </span>
@@ -84,7 +84,7 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
             >
               <a
                 href={mainNews.link}
-                className="inline-flex items-center gap-3 bg-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-700 transition-all duration-300 group shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-3 bg-emerald-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-emerald-700 transition-all duration-300 group shadow-lg hover:shadow-xl"
               >
                 Baca Selengkapnya
                 <ArrowRight 
@@ -101,11 +101,11 @@ const BeritaHero: React.FC<BeritaHeroProps> = ({ className = "" }) => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="aspect-[5/3] rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-200 relative overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
+            <div className="aspect-[5/3] rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 relative overflow-hidden shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-600/20 to-transparent" />
               <div className="absolute bottom-4 left-4">
                 <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
-                  <span className="text-blue-600 font-medium text-sm">
+                  <span className="text-emerald-600 font-medium text-sm">
                     {mainNews.badge}
                   </span>
                 </div>

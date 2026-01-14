@@ -48,97 +48,9 @@ const transitions = {
   slow: { duration: 0.5, ease: "easeOut" as const }
 };
 
-// Gallery data
-const KEGIATAN_CATEGORIES = [
-  { id: 'all', name: 'Semua', count: 0 }, // Will be calculated dynamically
-  { id: 'workshop', name: 'Workshop', count: 0 },
-  { id: 'sosialisasi', name: 'Sosialisasi', count: 0 },
-  { id: 'rapat', name: 'Rapat Koordinasi', count: 0 },
-  { id: 'pelatihan', name: 'Pelatihan', count: 0 }
-] as const;
-
-const KEGIATAN_EVENTS = [
-  {
-    id: 1,
-    title: "Workshop Pemberdayaan Ekonomi Perempuan",
-    description: "Pelatihan intensif untuk meningkatkan keterampilan wirausaha perempuan di berbagai sektor ekonomi kreatif dan UMKM",
-    image: "/images/gallery/workshop-1.jpg",
-    category: "workshop",
-    date: "2025-01-20",
-    location: "Padang Pariaman",
-    participants: 150,
-    duration: "2 hari",
-    views: 245,
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Sosialisasi Perlindungan Anak dari Kekerasan",
-    description: "Program edukasi komprehensif untuk orang tua, guru, dan masyarakat tentang pencegahan kekerasan pada anak",
-    image: "/images/gallery/sosialisasi-1.jpg",
-    category: "sosialisasi",
-    date: "2025-01-18",
-    location: "Bukittinggi",
-    participants: 200,
-    duration: "1 hari",
-    views: 189,
-    featured: false
-  },
-  {
-    id: 3,
-    title: "Rapat Koordinasi Lintas Sektor",
-    description: "Koordinasi strategis dengan berbagai instansi terkait untuk sinkronisasi program pemberdayaan perempuan dan anak",
-    image: "/images/gallery/rapat-1.jpg",
-    category: "rapat",
-    date: "2025-01-15",
-    location: "Padang",
-    participants: 50,
-    duration: "4 jam",
-    views: 156,
-    featured: false
-  },
-  {
-    id: 4,
-    title: "Pelatihan Kader Posyandu",
-    description: "Pemberdayaan kader posyandu untuk meningkatkan kualitas pelayanan kesehatan ibu dan anak di tingkat desa",
-    image: "/images/gallery/posyandu-1.jpg",
-    category: "pelatihan",
-    date: "2025-01-12",
-    location: "Solok",
-    participants: 80,
-    duration: "3 hari",
-    views: 203,
-    featured: true
-  },
-  {
-    id: 5,
-    title: "Kampanye Stop Perkawinan Anak",
-    description: "Kampanye massal untuk meningkatkan kesadaran masyarakat tentang bahaya perkawinan anak dan pencegahannya",
-    image: "/images/gallery/kampanye-1.jpg",
-    category: "sosialisasi",
-    date: "2025-01-10",
-    location: "Payakumbuh",
-    participants: 300,
-    duration: "1 hari",
-    views: 278,
-    featured: true
-  },
-  {
-    id: 6,
-    title: "Workshop Parenting Positif",
-    description: "Pelatihan pola asuh positif untuk orang tua dalam mendidik anak dengan pendekatan yang tepat dan bermartabat",
-    image: "/images/gallery/workshop-2.jpg",
-    category: "workshop",
-    date: "2025-01-08",
-    location: "Pesisir Selatan",
-    participants: 120,
-    duration: "2 hari",
-    views: 167,
-    featured: false
-  }
-] as const;
-
-// Components
+import { KEGIATAN_CATEGORIES, KEGIATAN_EVENTS } from '@/data/galeri';
+import Pagination from '@/components/ui/Pagination';
+import { KegiatanEvent } from '@/types/galeri';
 const BreadcrumbNav = memo(() => (
   <motion.nav
     variants={slideUp}
@@ -202,7 +114,7 @@ const EventModal = memo(({
   hasNext, 
   hasPrev 
 }: { 
-  event: typeof KEGIATAN_EVENTS[number] | null;
+  event: KegiatanEvent | null;
   isOpen: boolean;
   onClose: () => void;
   onNext: () => void;
@@ -361,7 +273,7 @@ const EventModal = memo(({
 EventModal.displayName = 'EventModal';
 
 const EventCard = memo(({ event, index, onClick }: { 
-  event: typeof KEGIATAN_EVENTS[number], 
+  event: KegiatanEvent,
   index: number,
   onClick: () => void 
 }) => {
@@ -467,12 +379,21 @@ const EventCard = memo(({ event, index, onClick }: {
 
 EventCard.displayName = 'EventCard';
 
+import { useKegiatanGaleri } from '@/hooks/useKegiatanGaleri';
+
 export default function Kegiatan() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-  const [selectedEvent, setSelectedEvent] = useState<typeof KEGIATAN_EVENTS[number] | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<KegiatanEvent | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    events: filteredEvents,
+    currentPage,
+    totalPages,
+    handlePageChange,
+  } = useKegiatanGaleri(activeCategory, debouncedSearchTerm);
 
   // Calculate dynamic category counts
   const categoriesWithCounts = useMemo(() => {
@@ -494,14 +415,7 @@ export default function Kegiatan() {
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
-  const filteredEvents = useMemo(() => {
-    return KEGIATAN_EVENTS.filter(event => {
-      const matchesCategory = activeCategory === 'all' || event.category === activeCategory;
-      const matchesSearch = event.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-                           event.description.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }, [activeCategory, debouncedSearchTerm]);
+  // We now use filteredEvents from useKegiatanGaleri hook
 
   const openModal = (event: typeof KEGIATAN_EVENTS[number]) => {
     setSelectedEvent(event);
@@ -516,7 +430,7 @@ export default function Kegiatan() {
   const navigateEvent = (direction: 'next' | 'prev') => {
     if (!selectedEvent) return;
     
-    const currentIndex = filteredEvents.findIndex(e => e.id === selectedEvent.id);
+    const currentIndex = filteredEvents.findIndex((e: KegiatanEvent) => e.id === selectedEvent.id);
     let newIndex;
     
     if (direction === 'next') {
@@ -528,7 +442,7 @@ export default function Kegiatan() {
     setSelectedEvent(filteredEvents[newIndex]);
   };
 
-  const currentEventIndex = selectedEvent ? filteredEvents.findIndex(e => e.id === selectedEvent.id) : -1;
+  const currentEventIndex = selectedEvent ? filteredEvents.findIndex((e: KegiatanEvent) => e.id === selectedEvent.id) : -1;
   const hasNext = currentEventIndex < filteredEvents.length - 1;
   const hasPrev = currentEventIndex > 0;
 
@@ -614,7 +528,7 @@ export default function Kegiatan() {
           animate="animate"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8"
         >
-          {filteredEvents.map((event, index) => (
+          {filteredEvents.map((event: KegiatanEvent, index: number) => (
             <EventCard 
               key={event.id} 
               event={event} 
@@ -624,7 +538,7 @@ export default function Kegiatan() {
           ))}
         </motion.div>
 
-        {/* Load More */}
+        {/* Pagination */}
         <motion.div
           variants={slideUp}
           initial="initial"
@@ -633,9 +547,11 @@ export default function Kegiatan() {
           transition={transitions.default}
           className="text-center mt-16"
         >
-          <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-10 py-4 rounded-xl font-semibold transition-colors duration-200 text-base shadow-lg hover:shadow-xl">
-            Muat Lebih Banyak
-          </button>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </motion.div>
 
         {/* Statistics Section */}

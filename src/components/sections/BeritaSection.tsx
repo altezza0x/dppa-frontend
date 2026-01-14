@@ -46,7 +46,7 @@ const BeritaSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-emerald-50">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -117,7 +117,7 @@ const BeritaSection: React.FC = () => {
                       {berita.tanggal}
                     </div>
 
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors min-h-[3.5rem] flex items-start">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-emerald-600 transition-colors min-h-[3.5rem] flex items-start">
                       {truncateTitle(berita.title, 8)}
                     </h3>
 
@@ -130,7 +130,7 @@ const BeritaSection: React.FC = () => {
                         <Bookmark className="h-3 w-3 mr-1" />
                         Simpan
                       </div>
-                      <span className="text-blue-600 text-sm font-medium group-hover:text-blue-700 flex items-center">
+                      <span className="text-emerald-600 text-sm font-medium group-hover:text-emerald-700 flex items-center">
                         Baca Selengkapnya
                         <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </span>
@@ -155,12 +155,12 @@ const BeritaSection: React.FC = () => {
                 <Link href={`/berita/${berita.slug}`} className="h-full">
                   <div className="flex gap-4 p-4 md:p-6 h-full items-center">
                     {/* Image */}
-                    <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex-shrink-0 overflow-hidden">
+                    <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex-shrink-0 overflow-hidden">
                       <div 
                         className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-300"
                         style={{ 
                           backgroundImage: `url('${berita.image}')`,
-                          backgroundColor: '#3b82f6'
+                          backgroundColor: '#10b981'
                         }}
                       />
                     </div>
@@ -181,7 +181,7 @@ const BeritaSection: React.FC = () => {
                         </div>
                       </div>
 
-                      <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors min-h-[2.5rem] flex items-start">
+                      <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 leading-tight group-hover:text-emerald-600 transition-colors min-h-[2.5rem] flex items-start">
                         {truncateTitle(berita.title, 6)}
                       </h3>
 
@@ -194,7 +194,7 @@ const BeritaSection: React.FC = () => {
                           <Eye className="h-3 w-3 mr-1" />
                           {berita.views} views
                         </div>
-                        <span className="text-blue-600 text-sm font-medium group-hover:text-blue-700">
+                        <span className="text-emerald-600 text-sm font-medium group-hover:text-emerald-700">
                           Baca →
                         </span>
                       </div>
@@ -215,7 +215,7 @@ const BeritaSection: React.FC = () => {
           >
             <Link 
               href="/berita"
-              className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
+              className="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
             >
               Lihat Semua Berita
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />

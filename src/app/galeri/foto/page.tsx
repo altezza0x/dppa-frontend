@@ -48,83 +48,8 @@ const transitions = {
   slow: { duration: 0.5, ease: "easeOut" as const }
 };
 
-// Gallery data
-const GALLERY_CATEGORIES = [
-  { id: 'all', name: 'Semua', count: 0 }, // Will be calculated dynamically
-  { id: 'pemberdayaan', name: 'Pemberdayaan Perempuan', count: 0 },
-  { id: 'perlindungan', name: 'Perlindungan Anak', count: 0 },
-  { id: 'keluarga', name: 'Keluarga Berencana', count: 0 },
-  { id: 'kegiatan', name: 'Kegiatan Dinas', count: 0 }
-] as const;
-
-const GALLERY_PHOTOS = [
-  {
-    id: 1,
-    title: "Workshop Pemberdayaan Ekonomi Perempuan",
-    description: "Pelatihan keterampilan dan wirausaha untuk perempuan di Kabupaten Padang Pariaman",
-    image: "/images/gallery/workshop-1.jpg",
-    category: "pemberdayaan",
-    date: "2025-01-20",
-    location: "Padang Pariaman",
-    views: 245,
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Sosialisasi Perlindungan Anak dari Kekerasan",
-    description: "Edukasi kepada orang tua dan guru tentang pencegahan kekerasan pada anak",
-    image: "/images/gallery/sosialisasi-1.jpg",
-    category: "perlindungan",
-    date: "2025-01-18",
-    location: "Bukittinggi",
-    views: 189,
-    featured: false
-  },
-  {
-    id: 3,
-    title: "Program KB Keliling di Daerah Terpencil",
-    description: "Layanan keluarga berencana mobile untuk masyarakat di daerah sulit dijangkau",
-    image: "/images/gallery/kb-keliling-1.jpg",
-    category: "keluarga",
-    date: "2025-01-15",
-    location: "Mentawai",
-    views: 312,
-    featured: true
-  },
-  {
-    id: 4,
-    title: "Rapat Koordinasi Lintas Sektor",
-    description: "Koordinasi dengan instansi terkait untuk sinkronisasi program",
-    image: "/images/gallery/rapat-1.jpg",
-    category: "kegiatan",
-    date: "2025-01-12",
-    location: "Padang",
-    views: 156,
-    featured: false
-  },
-  {
-    id: 5,
-    title: "Pelatihan Kader Posyandu",
-    description: "Pemberdayaan kader posyandu untuk meningkatkan pelayanan kesehatan ibu dan anak",
-    image: "/images/gallery/posyandu-1.jpg",
-    category: "pemberdayaan",
-    date: "2025-01-10",
-    location: "Solok",
-    views: 203,
-    featured: false
-  },
-  {
-    id: 6,
-    title: "Kampanye Stop Perkawinan Anak",
-    description: "Sosialisasi pencegahan perkawinan anak di kalangan remaja",
-    image: "/images/gallery/kampanye-1.jpg",
-    category: "perlindungan",
-    date: "2025-01-08",
-    location: "Payakumbuh",
-    views: 278,
-    featured: true
-  }
-] as const;
+import { GALLERY_CATEGORIES, GALLERY_PHOTOS } from '@/data/galeri';
+import Pagination from '@/components/ui/Pagination';
 
 // Components
 const BreadcrumbNav = memo(() => (
@@ -192,7 +117,7 @@ const PhotoModal = memo(({
   currentIndex,
   totalCount
 }: { 
-  photo: typeof GALLERY_PHOTOS[number] | null;
+  photo: GalleryPhoto | null;
   isOpen: boolean;
   onClose: () => void;
   onNext: () => void;
@@ -356,8 +281,10 @@ const PhotoModal = memo(({
 
 PhotoModal.displayName = 'PhotoModal';
 
+import { GalleryPhoto } from '@/types/galeri';
+
 const PhotoCard = memo(({ photo, index, onClick }: { 
-  photo: typeof GALLERY_PHOTOS[number], 
+  photo: GalleryPhoto,
   index: number,
   onClick: () => void 
 }) => {
@@ -460,12 +387,21 @@ const PhotoCard = memo(({ photo, index, onClick }: {
 
 PhotoCard.displayName = 'PhotoCard';
 
+import { useFotoGaleri } from '@/hooks/useFotoGaleri';
+
 export default function Foto() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-  const [selectedPhoto, setSelectedPhoto] = useState<typeof GALLERY_PHOTOS[number] | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    photos: filteredPhotos,
+    currentPage,
+    totalPages,
+    handlePageChange,
+  } = useFotoGaleri(activeCategory, debouncedSearchTerm);
 
   // Calculate dynamic category counts
   const categoriesWithCounts = useMemo(() => {
@@ -487,14 +423,7 @@ export default function Foto() {
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
-  const filteredPhotos = useMemo(() => {
-    return GALLERY_PHOTOS.filter(photo => {
-      const matchesCategory = activeCategory === 'all' || photo.category === activeCategory;
-      const matchesSearch = photo.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-                           photo.description.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }, [activeCategory, debouncedSearchTerm]);
+  // We now use filteredPhotos from useFotoGaleri hook
 
   const openModal = (photo: typeof GALLERY_PHOTOS[number]) => {
     setSelectedPhoto(photo);
@@ -509,7 +438,7 @@ export default function Foto() {
   const navigatePhoto = (direction: 'next' | 'prev') => {
     if (!selectedPhoto) return;
     
-    const currentIndex = filteredPhotos.findIndex(p => p.id === selectedPhoto.id);
+    const currentIndex = filteredPhotos.findIndex((p: GalleryPhoto) => p.id === selectedPhoto.id);
     let newIndex;
     
     if (direction === 'next') {
@@ -521,7 +450,7 @@ export default function Foto() {
     setSelectedPhoto(filteredPhotos[newIndex]);
   };
 
-  const currentPhotoIndex = selectedPhoto ? filteredPhotos.findIndex(p => p.id === selectedPhoto.id) : -1;
+  const currentPhotoIndex = selectedPhoto ? filteredPhotos.findIndex((p: GalleryPhoto) => p.id === selectedPhoto.id) : -1;
   const hasNext = currentPhotoIndex < filteredPhotos.length - 1;
   const hasPrev = currentPhotoIndex > 0;
 
@@ -607,7 +536,7 @@ export default function Foto() {
           animate="animate"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8"
         >
-          {filteredPhotos.map((photo, index) => (
+          {filteredPhotos.map((photo: GalleryPhoto, index: number) => (
             <PhotoCard 
               key={photo.id} 
               photo={photo} 
@@ -617,7 +546,7 @@ export default function Foto() {
           ))}
         </motion.div>
 
-        {/* Load More */}
+        {/* Pagination */}
         <motion.div
           variants={slideUp}
           initial="initial"
@@ -626,9 +555,11 @@ export default function Foto() {
           transition={transitions.default}
           className="text-center mt-16"
         >
-          <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-10 py-4 rounded-xl font-semibold transition-colors duration-200 text-base shadow-lg hover:shadow-xl">
-            Muat Lebih Banyak
-          </button>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </motion.div>
 
         {/* Quick Links Footer */}

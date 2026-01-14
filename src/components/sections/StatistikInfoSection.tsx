@@ -59,8 +59,8 @@ const StatistikInfoSection: React.FC = () => {
     {
       title: "Struktur Organisasi",
       content: {
-        kepala: "Dr. Hj. Siti Aminah, M.Si",
-        sekretaris: "Drs. Ahmad Syafii, M.AP",
+        kepala: "Dra. Hj. Gemala Ranti, M.Si",
+        sekretaris: "-",
         bidang: [
           "Bidang Pemberdayaan Perempuan",
           "Bidang Perlindungan Perempuan dan Anak", 

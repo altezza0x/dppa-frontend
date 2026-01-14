@@ -22,7 +22,7 @@ export default function VisiMisi() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Green Header Box - Full Width */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-8">
+      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-8">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: -15 }}
@@ -47,11 +47,11 @@ export default function VisiMisi() {
             className="flex items-center gap-1 text-sm text-gray-600"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="hover:underline text-green-700 font-semibold transition-colors">
+            <Link href="/" className="hover:underline text-emerald-700 font-semibold transition-colors">
               Beranda
             </Link>
             <span className="mx-1">/</span>
-            <Link href="/profil" className="hover:underline text-green-700 font-semibold transition-colors">
+            <Link href="/profil" className="hover:underline text-emerald-700 font-semibold transition-colors">
               Profil
             </Link>
             <span className="mx-1">/</span>
@@ -74,12 +74,12 @@ export default function VisiMisi() {
           <div className="bg-white rounded-xl shadow-md p-6 md:p-8 mb-8">
             {/* Visi */}
             <div className="mb-8">
-              <h2 className="text-xl font-bold mb-4 text-green-700 text-center">Visi</h2>
+              <h2 className="text-xl font-bold mb-4 text-emerald-700 text-center">Visi</h2>
               <div className="mb-4 text-gray-700 leading-relaxed text-justify">
                 Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana Provinsi Sumatera Barat selaku penyelenggara dua urusan wajib pemerintahan, yaitu Urusan Pemberdayaan Perempuan dan Perlindungan Anak dan Urusan Keluarga Berencana dalam melaksanakan Tugas Pokok dan Fungsinya mempunyai Visi :
               </div>
-              <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded">
-                <p className="italic font-semibold text-lg text-green-800">
+              <div className="bg-emerald-50 border-l-4 border-emerald-600 p-4 rounded">
+                <p className="italic font-semibold text-lg text-emerald-800">
                   "TERWUJUDNYA SUMATERA BARAT MADANI<br />YANG UNGGUL DAN BERKELANJUTAN"
                 </p>
               </div>
@@ -90,11 +90,11 @@ export default function VisiMisi() {
             
             {/* Misi */}
             <div>
-              <h2 className="text-xl font-bold mb-4 text-green-700 text-center">Misi</h2>
+              <h2 className="text-xl font-bold mb-4 text-emerald-700 text-center">Misi</h2>
               <div className="mb-4 text-gray-700 leading-relaxed text-justify">
                 Dalam rangka mewujudkan Visi tersebut, Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana Provinsi Sumatera Barat menetapkan 2 (dua) misi yang dilaksanakan secara berkesinambungan yaitu :
               </div>
-              <ol className="list-decimal pl-6 space-y-3 text-green-800">
+              <ol className="list-decimal pl-6 space-y-3 text-emerald-800">
                 <li>
                   <span className="font-semibold text-justify block">
                     Meningkatkan tata kehidupan sosial kemasyarakatan berdasarkan falsafah Adat Basandi Syara', Syara' Basandi Kitabullah.
@@ -111,15 +111,15 @@ export default function VisiMisi() {
         
           {/* Galeri Foto */}
           <div className="mb-8">
-            <h3 className="text-lg font-bold mb-4 text-green-700 flex items-center gap-2">
-              <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7V6a2 2 0 012-2h2.172a2 2 0 011.414.586l1.828 1.828A2 2 0 0012.828 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>
+            <h3 className="text-lg font-bold mb-4 text-emerald-700 flex items-center gap-2">
+              <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7V6a2 2 0 012-2h2.172a2 2 0 011.414.586l1.828 1.828A2 2 0 0012.828 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>
               Galeri Kegiatan
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {galleryImages.map((img) => (
                 <button
                   key={img.src}
-                  className="group relative rounded-lg overflow-hidden shadow hover:shadow-lg transition-all border border-gray-100 hover:border-green-600 focus:outline-none"
+                  className="group relative rounded-lg overflow-hidden shadow hover:shadow-lg transition-all border border-gray-100 hover:border-emerald-600 focus:outline-none"
                   onClick={() => setModalImg(img)}
                   aria-label={img.caption}
                 >
@@ -143,16 +143,16 @@ export default function VisiMisi() {
             <aside className="md:order-1 md:col-span-3 space-y-6 mt-8 md:mt-0">
           {/* Profil Pejabat */}
           <div className="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center">
-            <div className="w-24 h-24 rounded-full overflow-hidden mb-2 border-4 border-green-200">
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-2">
               <Image src={pejabat.foto} alt={pejabat.nama} width={96} height={96} className="object-cover w-full h-full" />
             </div>
-            <h3 className="font-bold text-green-800 text-base">{pejabat.nama}</h3>
+            <h3 className="font-bold text-emerald-800 text-base">{pejabat.nama}</h3>
             <div className="text-xs text-gray-500">{pejabat.jabatan}</div>
           </div>
           
           {/* Kontak Singkat */}
           <div className="bg-white rounded-lg shadow p-4">
-            <h3 className="font-bold text-green-800 mb-2 text-base">Kontak Instansi</h3>
+            <h3 className="font-bold text-emerald-800 mb-2 text-base">Kontak Instansi</h3>
             <ul className="text-sm text-gray-600 space-y-1">
               <li><span className="font-semibold">Alamat:</span> Jl. Khatib Sulaiman No.1, Padang</li>
               <li><span className="font-semibold">Telepon:</span> (0751) 123456</li>
@@ -162,8 +162,8 @@ export default function VisiMisi() {
           
           {/* Quick Links */}
           <div className="bg-white rounded-lg shadow p-4">
-            <h3 className="font-bold text-green-800 mb-2 text-base">Link Cepat</h3>
-            <ul className="text-sm text-green-700 space-y-1">
+            <h3 className="font-bold text-emerald-800 mb-2 text-base">Link Cepat</h3>
+            <ul className="text-sm text-emerald-700 space-y-1">
               <li><Link href="/berita" className="hover:underline">Berita Terkini</Link></li>
               <li><Link href="/galeri" className="hover:underline">Galeri Kegiatan</Link></li>
               <li><Link href="/ppid" className="hover:underline">PPID</Link></li>
@@ -201,7 +201,7 @@ export default function VisiMisi() {
                 height={400} 
                 className="object-cover w-full rounded mb-2" 
               />
-              <div className="text-center text-green-800 font-semibold">{modalImg.caption}</div>
+              <div className="text-center text-emerald-800 font-semibold">{modalImg.caption}</div>
             </motion.div>
           </motion.div>
         )}

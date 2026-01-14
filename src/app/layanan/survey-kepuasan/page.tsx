@@ -471,19 +471,19 @@ const FeedbackCard = memo(({ feedback, index }: { feedback: typeof FEEDBACK_MASY
     transition={{ delay: index * 0.1, duration: 0.5 }}
     className="bg-white p-6 rounded-xl shadow-md border border-gray-200"
   >
-    <div className="flex items-start justify-between mb-3">
-      <div>
+    <div className="flex flex-col gap-2 mb-3">
+      <div className="flex items-center justify-between">
         <h4 className="font-semibold text-gray-900">{feedback.nama}</h4>
-        <p className="text-sm text-emerald-700">{feedback.layanan}</p>
+        <div className="flex items-center gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star 
+              key={i} 
+              className={`w-3 h-3 ${i < feedback.rating ? 'text-yellow-500 fill-current' : 'text-gray-300'}`} 
+            />
+          ))}
+        </div>
       </div>
-      <div className="flex items-center gap-1">
-        {[...Array(5)].map((_, i) => (
-          <Star 
-            key={i} 
-            className={`w-4 h-4 ${i < feedback.rating ? 'text-yellow-500 fill-current' : 'text-gray-300'}`} 
-          />
-        ))}
-      </div>
+      <p className="text-sm text-emerald-700">{feedback.layanan}</p>
     </div>
     <p className="text-gray-600 text-sm italic mb-3">"{feedback.komentar}"</p>
     <p className="text-xs text-gray-500">{feedback.tanggal}</p>
@@ -641,7 +641,7 @@ export default function SurveyKepuasan() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                   Testimoni Masyarakat
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 gap-6">
                   {FEEDBACK_MASYARAKAT.map((feedback, index) => (
                     <FeedbackCard key={feedback.id} feedback={feedback} index={index} />
                   ))}
