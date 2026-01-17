@@ -86,9 +86,35 @@ const dropdownVariants = {
 };
 
 const mobileMenuVariants = {
-	hidden: { x: "100%", opacity: 0 },
-	visible: { x: 0, opacity: 1 },
-	exit: { x: "100%", opacity: 0 }
+	hidden: {
+		opacity: 0,
+		scale: 0.95,
+		y: -10,
+		transition: { duration: 0.2, ease: "easeInOut" }
+	},
+	visible: {
+		opacity: 1,
+		scale: 1,
+		y: 0,
+		transition: {
+			type: "spring",
+			stiffness: 350,
+			damping: 25,
+			staggerChildren: 0.05,
+			delayChildren: 0.05
+		}
+	},
+	exit: {
+		opacity: 0,
+		scale: 0.95,
+		y: -10,
+		transition: { duration: 0.15, ease: "easeIn" }
+	}
+} as const;
+
+const menuItemVariants = {
+	hidden: { x: 20, opacity: 0 },
+	visible: { x: 0, opacity: 1, transition: { duration: 0.3 } }
 };
 
 const overlayVariants = {
@@ -118,7 +144,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
 	onDropdownLeave
 }) => {
 	return (
-		<div className="hidden md:flex items-center gap-4 justify-center flex-grow relative">
+		<div className="hidden lg:flex items-center gap-4 justify-center flex-grow relative">
 			{/* Animated indicator */}
 			{indicatorProps && (
 				<motion.div
@@ -247,9 +273,8 @@ const SimpleMenuItem: React.FC<SimpleMenuItemProps> = ({
 		>
 			<Link
 				href={link.href}
-				className={`px-1 py-2 rounded transition relative whitespace-nowrap font-medium text-[15px] ${
-					isActive(link.href) ? "text-green-700 font-semibold" : "text-gray-900 hover:text-green-700"
-				}`}
+				className={`px-1 py-2 rounded transition relative whitespace-nowrap font-medium text-[15px] ${isActive(link.href) ? "text-green-700 font-semibold" : "text-gray-900 hover:text-green-700"
+					}`}
 			>
 				{link.name}
 			</Link>
@@ -302,27 +327,46 @@ interface HamburgerButtonProps {
 	onClick: () => void;
 }
 
+interface HamburgerButtonProps {
+	open: boolean;
+	onClick: () => void;
+}
+
 const HamburgerButton: React.FC<HamburgerButtonProps> = ({ open, onClick }) => {
 	return (
-		<div className="flex items-center md:hidden ml-auto">
-			<button
+		<div className="flex items-center lg:hidden ml-auto z-[10000] relative">
+			<motion.button
+				initial={false}
+				animate={open ? "open" : "closed"}
 				onClick={onClick}
-				className="inline-flex items-center justify-center p-1 focus:outline-none focus:ring-2 focus:ring-green-700"
+				className="flex flex-col gap-[5px] justify-center items-center w-10 h-10 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-900 bg-transparent"
 				aria-label={open ? "Tutup menu" : "Buka menu"}
 			>
-				<svg
-					className="h-8 w-8 text-gray-900"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					{open ? (
-						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-					) : (
-						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-					)}
-				</svg>
-			</button>
+				<motion.span
+					variants={{
+						closed: { rotate: 0, y: 0 },
+						open: { rotate: 45, y: 7 },
+					}}
+					className="w-6 h-[2.5px] bg-gray-900 rounded-full block origin-center"
+					transition={{ duration: 0.3, ease: "easeInOut" }}
+				/>
+				<motion.span
+					variants={{
+						closed: { opacity: 1, x: 0 },
+						open: { opacity: 0, x: 20 },
+					}}
+					className="w-6 h-[2.5px] bg-gray-900 rounded-full block"
+					transition={{ duration: 0.3, ease: "easeInOut" }}
+				/>
+				<motion.span
+					variants={{
+						closed: { rotate: 0, y: 0 },
+						open: { rotate: -45, y: -8 },
+					}}
+					className="w-6 h-[2.5px] bg-gray-900 rounded-full block origin-center"
+					transition={{ duration: 0.3, ease: "easeInOut" }}
+				/>
+			</motion.button>
 		</div>
 	);
 };
@@ -340,66 +384,50 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 	onClose,
 	onDropdownToggle
 }) => {
+	// Prevent body scroll when menu is open
+	useEffect(() => {
+		document.body.style.overflow = "hidden";
+		return () => {
+			document.body.style.overflow = "unset";
+		};
+	}, []);
+
 	return createPortal(
-		<AnimatePresence>
-			<motion.div
-				initial="hidden"
-				animate="visible"
-				exit="exit"
-				variants={mobileMenuVariants}
-				transition={{ type: "tween", ease: "easeInOut", duration: 0.22 }}
-				className="md:hidden fixed inset-0 z-[9999] flex justify-end"
-			>
-				{/* Overlay */}
+		<AnimatePresence mode="wait">
+			<>
+				{/* Invisible backdrop to close on click outside */}
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					className="lg:hidden fixed inset-0 z-[9998] bg-transparent"
+					onClick={onClose}
+				/>
+
+				{/* Floating Menu Card */}
 				<motion.div
 					initial="hidden"
 					animate="visible"
 					exit="exit"
-					variants={overlayVariants}
-					transition={{ duration: 0.18 }}
-					className="absolute inset-0 bg-black/40 z-0"
-					onClick={onClose}
-				/>
-				
-				{/* Menu Content */}
-				<motion.div
-					initial={{ x: 64, opacity: 0.7 }}
-					animate={{ x: 0, opacity: 1 }}
-					exit={{ x: 64, opacity: 0 }}
-					transition={{ type: 'tween', ease: 'easeInOut', duration: 0.22 }}
-					className="relative w-80 h-full shadow-xl flex flex-col bg-white rounded-l-2xl z-10 overflow-y-auto max-h-screen"
+					variants={mobileMenuVariants}
+					className="lg:hidden fixed top-[80px] right-4 z-[9999] w-72 max-h-[calc(100vh-100px)] overflow-y-auto bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/40 origin-top-right ring-1 ring-black/5 will-change-transform"
 				>
-					{/* Close button */}
-					<button
-						onClick={onClose}
-						className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 shadow focus:outline-none"
-						aria-label="Tutup menu"
-					>
-						<svg className="h-7 w-7 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-						</svg>
-					</button>
-					
-					{/* Header */}
-					<div className="flex flex-col items-start px-6 pt-8 pb-2 mb-2 border-b border-gray-100">
-						<span className="text-green-700 text-xl font-bold tracking-wide leading-tight">DP3AP2KB</span>
-						<span className="text-gray-600 text-sm font-semibold mt-0.5">Sumatera Barat</span>
+					<div className="py-2">
+						<nav className="flex flex-col p-2 space-y-1">
+							{navLinks.map((link) => (
+								<motion.div key={link.name} variants={menuItemVariants}>
+									<MobileMenuItem
+										link={link}
+										dropdown={dropdown}
+										onClose={onClose}
+										onDropdownToggle={onDropdownToggle}
+									/>
+								</motion.div>
+							))}
+						</nav>
 					</div>
-					
-					{/* Navigation */}
-					<nav className="flex-1 flex flex-col gap-1 px-2 pb-6">
-						{navLinks.map((link) => (
-							<MobileMenuItem
-								key={link.name}
-								link={link}
-								dropdown={dropdown}
-								onClose={onClose}
-								onDropdownToggle={onDropdownToggle}
-							/>
-						))}
-					</nav>
 				</motion.div>
-			</motion.div>
+			</>
 		</AnimatePresence>,
 		document.body
 	);
@@ -418,40 +446,54 @@ const MobileMenuItem: React.FC<MobileMenuItemProps> = ({
 	onClose,
 	onDropdownToggle
 }) => {
+	const pathname = usePathname();
+	const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+
+	// Check if any child is active
+	const isChildActive = link.dropdown
+		? link.dropdown.some(item => pathname === item.href)
+		: false;
+
 	if (link.dropdown) {
+		const isOpen = dropdown === link.name;
 		return (
-			<div>
+			<div className="mb-1">
 				<button
 					onClick={() => onDropdownToggle(link.name)}
-					className={`w-full flex items-center justify-between px-4 py-2 rounded-lg font-bold text-[15px] text-left transition-colors ${
-						dropdown === link.name ? 'bg-green-50 text-green-700' : 'text-gray-900 hover:bg-green-50 hover:text-green-700'
-					}`}
+					className={`w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold text-[15px] text-left transition-all duration-300
+						${isOpen
+							? 'bg-gradient-to-r from-emerald-50/80 to-white text-emerald-700 shadow-sm ring-1 ring-emerald-100/50'
+							: isChildActive
+								? 'text-emerald-700 bg-emerald-50/30'
+								: 'text-gray-700 hover:bg-gray-50 hover:text-emerald-700'
+						}`}
 				>
-					<span>{link.name}</span>
+					<span className="tracking-wide">{link.name}</span>
 					<motion.svg
-						className="ml-2 w-4 h-4"
+						className={`ml-2 w-4 h-4 transition-transform duration-300 ${isOpen || isChildActive ? "text-emerald-600" : "text-gray-400"}`}
 						fill="none"
 						stroke="currentColor"
 						strokeWidth={2}
 						viewBox="0 0 24 24"
-						animate={{ rotate: dropdown === link.name ? 180 : 0 }}
-						transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+						animate={{ rotate: isOpen ? 180 : 0 }}
 					>
 						<path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
 					</motion.svg>
 				</button>
 				<AnimatePresence>
-					{dropdown === link.name && (
+					{isOpen && (
 						<motion.div
-							initial={{ opacity: 0, y: 10 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: 10 }}
-							transition={{ type: 'spring', stiffness: 320, damping: 32, duration: 0.22 }}
-							className="pl-2"
+							initial={{ opacity: 0, height: 0 }}
+							animate={{ opacity: 1, height: "auto" }}
+							exit={{ opacity: 0, height: 0 }}
+							transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+							className="overflow-hidden"
 						>
-							{link.dropdown.map((item) => (
-								<MobileDropdownItem key={item.name} item={item} onClose={onClose} />
-							))}
+							<div className="pl-2 py-1 space-y-1">
+								{link.dropdown.map((item) => (
+									<MobileDropdownItem key={item.name} item={item} onClose={onClose} />
+								))}
+							</div>
 						</motion.div>
 					)}
 				</AnimatePresence>
@@ -462,11 +504,31 @@ const MobileMenuItem: React.FC<MobileMenuItemProps> = ({
 	return (
 		<Link
 			href={link.href}
-			className="block px-4 py-2 rounded-lg font-bold text-[15px] transition-colors text-gray-900 hover:bg-green-50 hover:text-green-700"
-			style={{ paddingLeft: 16, transition: 'background 0.18s, color 0.18s' }}
 			onClick={onClose}
+			className={`
+				relative block px-4 py-3 rounded-xl font-semibold text-[15px] transition-all duration-300 mb-1
+				${isActive
+					? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-200"
+					: "text-gray-700 hover:bg-gray-50 hover:text-emerald-700"
+				}
+			`}
 		>
-			{link.name}
+			<div className="flex items-center justify-between">
+				<span className="tracking-wide">{link.name}</span>
+				{isActive && (
+					<motion.svg
+						initial={{ scale: 0 }}
+						animate={{ scale: 1 }}
+						className="w-4 h-4 text-white/90"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						strokeWidth={2.5}
+					>
+						<path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+					</motion.svg>
+				)}
+			</div>
 		</Link>
 	);
 };
@@ -524,7 +586,7 @@ const useScrollDetection = () => {
 
 		window.addEventListener('scroll', handleScroll, { passive: true });
 		handleScroll(); // Initial check
-		
+
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
@@ -567,15 +629,14 @@ export default function Navbar() {
 	const [mounted, setMounted] = useState(false);
 	const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
 	const pathname = usePathname();
-	
+
 	// Custom hooks
 	const isScrolled = useScrollDetection();
 	const { indicatorProps, menuRefs, isActive } = useActiveIndicator(pathname, navLinks);
 
 	// Memoized values
-	const navbarClasses = useMemo(() => 
-		`sticky top-0 z-50 border-b border-gray-100 transition-all duration-300 ${
-			isScrolled ? 'backdrop-blur-md bg-white/80 shadow' : 'bg-white'
+	const navbarClasses = useMemo(() =>
+		`sticky top-0 z-50 border-b border-gray-100 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md bg-white/80 shadow' : 'bg-white'
 		}`, [isScrolled]
 	);
 
@@ -616,7 +677,7 @@ export default function Navbar() {
 								quality={100}
 								priority
 								className="object-contain"
-								style={{ 
+								style={{
 									imageRendering: 'crisp-edges',
 									filter: 'contrast(1.1) saturate(1.05)',
 								}}
@@ -631,12 +692,12 @@ export default function Navbar() {
 							</span>
 						</div>
 					</Link>
-					
+
 					{/* Spacer untuk dorong hamburger ke kanan */}
 					<div className="flex-1" />
-					
+
 					{/* Menu utama */}
-					<DesktopMenu 
+					<DesktopMenu
 						navLinks={navLinks}
 						dropdown={dropdown}
 						indicatorProps={indicatorProps}
@@ -645,18 +706,18 @@ export default function Navbar() {
 						onDropdownEnter={handleDropdownEnter}
 						onDropdownLeave={handleDropdownLeave}
 					/>
-					
+
 					{/* Spacer kanan agar menu benar-benar center */}
-					<div className="hidden md:block min-w-[180px] max-w-[260px]" />
-					
+					<div className="hidden lg:block min-w-[180px] max-w-[260px]" />
+
 					{/* Hamburger */}
 					<HamburgerButton open={open} onClick={() => setOpen(!open)} />
 				</div>
 			</nav>
-			
+
 			{/* Mobile menu */}
 			{mounted && open && (
-				<MobileMenu 
+				<MobileMenu
 					navLinks={navLinks}
 					dropdown={dropdown}
 					onClose={handleMobileMenuClose}

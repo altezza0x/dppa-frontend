@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, ArrowRight, Bookmark, Eye } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import { useBeritaFilter } from '@/hooks/useBerita';
@@ -10,7 +11,7 @@ import { useBeritaFilter } from '@/hooks/useBerita';
 const BeritaSection: React.FC = () => {
   // Gunakan hook yang sama dengan halaman berita utama
   const { filteredBerita } = useBeritaFilter();
-  
+
   // Ambil 7 berita terbaru dari data yang sama dengan halaman berita
   const beritaTerbaru = filteredBerita.slice(0, 7);
 
@@ -56,7 +57,7 @@ const BeritaSection: React.FC = () => {
         >
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
-            <motion.h2 
+            <motion.h2
               className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +66,7 @@ const BeritaSection: React.FC = () => {
             >
               Berita Terbaru
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -89,13 +90,13 @@ const BeritaSection: React.FC = () => {
               >
                 <Link href={`/berita/${berita.slug}`} className="flex flex-col h-full">
                   {/* Image */}
-                  <div className="relative h-48 md:h-56 overflow-hidden">
-                    <div 
-                      className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
-                      style={{ 
-                        backgroundImage: `url('${berita.image}')`,
-                        backgroundColor: '#10b981'
-                      }}
+                  <div className="relative h-48 md:h-56 overflow-hidden bg-emerald-500">
+                    <Image
+                      src={berita.image}
+                      alt={berita.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw"
                     />
                     <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                       {berita.kategori.slice(0, 2).map((kat, idx) => (
@@ -155,13 +156,13 @@ const BeritaSection: React.FC = () => {
                 <Link href={`/berita/${berita.slug}`} className="h-full">
                   <div className="flex gap-4 p-4 md:p-6 h-full items-center">
                     {/* Image */}
-                    <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex-shrink-0 overflow-hidden">
-                      <div 
-                        className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-300"
-                        style={{ 
-                          backgroundImage: `url('${berita.image}')`,
-                          backgroundColor: '#10b981'
-                        }}
+                    <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex-shrink-0 overflow-hidden relative">
+                      <Image
+                        src={berita.image}
+                        alt={berita.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                        sizes="96px"
                       />
                     </div>
 
@@ -213,7 +214,7 @@ const BeritaSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Link 
+            <Link
               href="/berita"
               className="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
             >

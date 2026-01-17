@@ -63,7 +63,7 @@ const StatistikInfoSection: React.FC = () => {
         sekretaris: "-",
         bidang: [
           "Bidang Pemberdayaan Perempuan",
-          "Bidang Perlindungan Perempuan dan Anak", 
+          "Bidang Perlindungan Perempuan dan Anak",
           "Bidang Pengendalian Penduduk dan KB",
           "Bidang Data dan Informasi"
         ]
@@ -83,14 +83,14 @@ const StatistikInfoSection: React.FC = () => {
 
   const CountUpAnimation = ({ value, duration = 2000 }: { value: string; duration?: number }) => {
     const [count, setCount] = useState(0);
-    
+
     React.useEffect(() => {
       if (!isInView) return;
-      
+
       const numericValue = parseInt(value.replace(/[^\d]/g, ''));
       const increment = numericValue / (duration / 16);
       let current = 0;
-      
+
       const timer = setInterval(() => {
         current += increment;
         if (current >= numericValue) {
@@ -100,15 +100,15 @@ const StatistikInfoSection: React.FC = () => {
           setCount(Math.floor(current));
         }
       }, 16);
-      
+
       return () => clearInterval(timer);
     }, [isInView, value, duration]);
-    
+
     return (
       <span>
-        {value.includes('%') ? `${count}%` : 
-         value.includes('+') ? `${count}+` : 
-         count.toLocaleString('id-ID')}
+        {value.includes('%') ? `${count}%` :
+          value.includes('+') ? `${count}+` :
+            count.toLocaleString('id-ID')}
       </span>
     );
   };
@@ -137,6 +137,14 @@ const StatistikInfoSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {statistikData.map((stat, index) => {
               const Icon = stat.icon;
+              const colorClasses: Record<string, { bg: string; text: string }> = {
+                blue: { bg: 'bg-blue-100', text: 'text-blue-600' },
+                emerald: { bg: 'bg-emerald-100', text: 'text-emerald-600' },
+                purple: { bg: 'bg-purple-100', text: 'text-purple-600' },
+                orange: { bg: 'bg-orange-100', text: 'text-orange-600' },
+              };
+              const colors = colorClasses[stat.color] || colorClasses.blue;
+
               return (
                 <motion.div
                   key={index}
@@ -155,8 +163,8 @@ const StatistikInfoSection: React.FC = () => {
                     </div>
 
                     {/* Icon */}
-                    <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-${stat.color}-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`h-8 w-8 text-${stat.color}-600`} />
+                    <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl ${colors.bg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className={`h-8 w-8 ${colors.text}`} />
                     </div>
 
                     {/* Value */}
@@ -194,11 +202,10 @@ const StatistikInfoSection: React.FC = () => {
               <button
                 key={index}
                 onClick={() => setActiveTab(index)}
-                className={`flex-1 px-6 py-4 text-center font-semibold transition-all duration-300 ${
-                  activeTab === index
-                    ? 'bg-emerald-500 text-white'
-                    : 'text-gray-600 hover:text-emerald-600 hover:bg-emerald-50'
-                }`}
+                className={`flex-1 px-6 py-4 text-center font-semibold transition-all duration-300 ${activeTab === index
+                  ? 'bg-emerald-500 text-white'
+                  : 'text-gray-600 hover:text-emerald-600 hover:bg-emerald-50'
+                  }`}
               >
                 {tab.title}
               </button>
@@ -247,7 +254,7 @@ const StatistikInfoSection: React.FC = () => {
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Struktur Organisasi</h3>
                     <p className="text-gray-600">Kepemimpinan dan struktur organisasi DP3AP2KB Sumbar</p>
                   </div>
-                  
+
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="text-center">
                       <div className="bg-emerald-100 rounded-2xl p-6 mb-4">
@@ -262,7 +269,7 @@ const StatistikInfoSection: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-4 text-center">Bidang-Bidang</h4>
                     <div className="grid sm:grid-cols-2 gap-4">
@@ -282,7 +289,7 @@ const StatistikInfoSection: React.FC = () => {
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Informasi Kontak</h3>
                     <p className="text-gray-600">Hubungi kami untuk informasi lebih lanjut</p>
                   </div>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Alamat */}
                     <div className="bg-gray-50 rounded-2xl p-6">
@@ -296,7 +303,7 @@ const StatistikInfoSection: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Telepon */}
                     <div className="bg-gray-50 rounded-2xl p-6">
                       <div className="flex items-start space-x-4">
@@ -309,7 +316,7 @@ const StatistikInfoSection: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Email */}
                     <div className="bg-gray-50 rounded-2xl p-6">
                       <div className="flex items-start space-x-4">
@@ -322,7 +329,7 @@ const StatistikInfoSection: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Jam Kerja */}
                     <div className="bg-gray-50 rounded-2xl p-6">
                       <div className="flex items-start space-x-4">

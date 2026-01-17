@@ -60,7 +60,7 @@ export const useBeritaFilter = () => {
       title: "Rencana Dinas Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana 2021-2026",
       slug: "rencana-dinas-pppa-2021-2026",
       excerpt: "Rencana strategis untuk pemberdayaan perempuan dan perlindungan anak dalam periode 2021-2026 yang mencakup berbagai program inovatif dan berkelanjutan untuk meningkatkan kualitas hidup masyarakat Sumatera Barat.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["berita-utama", "program"],
       tanggal: "13 Juli 2025",
       author: "Admin DPPA",
@@ -72,7 +72,7 @@ export const useBeritaFilter = () => {
       title: "Workshop Peningkatan Kapasitas ASN dalam Era Digital",
       slug: "workshop-kapasitas-asn-digital",
       excerpt: "Serangkaian pelatihan komprehensif untuk mempersiapkan aparatur sipil negara menghadapi tantangan digitalisasi pemerintahan.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["kegiatan", "program"],
       tanggal: "2025-01-18",
       author: "Tim Pelatihan",
@@ -84,7 +84,7 @@ export const useBeritaFilter = () => {
       title: "Sosialisasi Peraturan Daerah Terbaru tentang Transparansi Informasi",
       slug: "sosialisasi-perda-transparansi-informasi",
       excerpt: "Upaya meningkatkan pemahaman masyarakat terhadap hak akses informasi publik sesuai dengan regulasi terkini.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["pengumuman", "berita"],
       tanggal: "2025-01-15",
       author: "Bagian Hukum",
@@ -96,7 +96,7 @@ export const useBeritaFilter = () => {
       title: "Pengumuman Hasil Seleksi Program Beasiswa Pendidikan",
       slug: "pengumuman-hasil-seleksi-beasiswa",
       excerpt: "Daftar nama peserta yang lolos seleksi program beasiswa pendidikan untuk tahun 2025.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["pengumuman"],
       tanggal: "2025-01-12",
       author: "Tim Seleksi",
@@ -108,7 +108,7 @@ export const useBeritaFilter = () => {
       title: "Program Pelatihan Digital Literacy untuk Masyarakat",
       slug: "program-pelatihan-digital-literacy",
       excerpt: "Inisiatif untuk meningkatkan kemampuan digital masyarakat dalam mengakses layanan pemerintahan online.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["program", "kegiatan"],
       tanggal: "2025-01-10",
       author: "Divisi Pelatihan",
@@ -120,7 +120,7 @@ export const useBeritaFilter = () => {
       title: "Kegiatan Gotong Royong Membersihkan Lingkungan Kantor",
       slug: "kegiatan-gotong-royong-lingkungan",
       excerpt: "Partisipasi aktif seluruh pegawai dalam menjaga kebersihan dan kenyamanan lingkungan kerja.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["kegiatan", "berita"],
       tanggal: "2025-01-08",
       author: "Tim Kebersihan",
@@ -132,7 +132,7 @@ export const useBeritaFilter = () => {
       title: "Peluncuran Aplikasi Mobile DPPA untuk Layanan Masyarakat",
       slug: "peluncuran-aplikasi-mobile-dppa",
       excerpt: "Inovasi terbaru dalam memberikan layanan digital yang mudah diakses masyarakat melalui smartphone.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["berita", "teknologi"],
       tanggal: "2025-01-05",
       author: "Tim IT",
@@ -144,7 +144,7 @@ export const useBeritaFilter = () => {
       title: "Seminar Nasional Perlindungan Anak di Era Digital",
       slug: "seminar-perlindungan-anak-digital",
       excerpt: "Diskusi komprehensif tentang tantangan dan solusi perlindungan anak dalam menghadapi era teknologi digital.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["kegiatan", "perlindungan-anak"],
       tanggal: "2025-01-03",
       author: "Bidang Perlindungan Anak",
@@ -156,7 +156,7 @@ export const useBeritaFilter = () => {
       title: "Program Pemberdayaan UMKM Perempuan Tahun 2025",
       slug: "program-pemberdayaan-umkm-perempuan",
       excerpt: "Inisiatif strategis untuk mendukung pengembangan usaha mikro, kecil, dan menengah yang dikelola oleh perempuan.",
-      image: "/public/images/bg.jpg",
+      image: "/images/bg.jpg",
       kategori: ["program", "pemberdayaan"],
       tanggal: "2025-01-01",
       author: "Bidang Pemberdayaan Perempuan",
@@ -167,9 +167,9 @@ export const useBeritaFilter = () => {
 
   const filteredBerita = beritaList.filter((berita) => {
     const matchesSearch = berita.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         berita.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesKategori = selectedKategori === "all" || 
-                           berita.kategori.includes(selectedKategori);
+      berita.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesKategori = selectedKategori === "all" ||
+      berita.kategori.includes(selectedKategori);
     return matchesSearch && matchesKategori;
   });
 
@@ -207,8 +207,8 @@ export const useStaggerAnimation = (delay = 0.1) => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
     }

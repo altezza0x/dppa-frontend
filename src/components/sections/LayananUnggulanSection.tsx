@@ -77,7 +77,7 @@ const LayananUnggulanSection: React.FC = () => {
             <span className="block text-emerald-600 mt-1">Masyarakat Sumbar</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Kami Menyediakan Berbagai Layanan Berkualitas untuk Pemberdayaan Perempuan, 
+            Kami Menyediakan Berbagai Layanan Berkualitas untuk Pemberdayaan Perempuan,
             Perlindungan Anak, dan Program Keluarga Berencana yang Inovatif.
           </p>
         </motion.div>
@@ -92,6 +92,14 @@ const LayananUnggulanSection: React.FC = () => {
         >
           {layananUtama.map((layanan, index) => {
             const Icon = layanan.icon;
+            const colorClasses: Record<string, { bg: string; text: string }> = {
+              emerald: { bg: 'bg-emerald-100', text: 'text-emerald-600' },
+              blue: { bg: 'bg-blue-100', text: 'text-blue-600' },
+              purple: { bg: 'bg-purple-100', text: 'text-purple-600' },
+              pink: { bg: 'bg-pink-100', text: 'text-pink-600' },
+            };
+            const colors = colorClasses[layanan.color] || colorClasses.emerald;
+
             return (
               <motion.div
                 key={index}
@@ -101,8 +109,8 @@ const LayananUnggulanSection: React.FC = () => {
                 <Link href={layanan.link}>
                   <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 h-full border border-gray-100 hover:border-emerald-200 group-hover:-translate-y-2 flex flex-col">
                     {/* Icon */}
-                    <div className={`w-16 h-16 rounded-2xl bg-${layanan.color}-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`h-8 w-8 text-${layanan.color}-600`} />
+                    <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className={`h-8 w-8 ${colors.text}`} />
                     </div>
 
                     {/* Title */}
